@@ -1,0 +1,31 @@
+﻿@model Agreement
+
+    <div class="">UMOWA KOMISU nr @Model.Id</div>
+
+
+Zawarta w dniu @Model.Begin.ToShortDateString() pomiędzy  SZAFARI  z siedzibą w Poznaniu,  przy
+ ul. Ratajczaka 28 ,  w imieniu którego działa ;  Iga Staniul (nr. Telefonu : ) zwana w treści umowy "Komisantem", a @Model.Name @Model.Surname, zwanym w treści umowy "Komitentem", o następującej treści:
+§ 1.
+Komisant zobowiązuje się do sprzedaży komisowej we własnym imieniu otrzymanych od Komitenta następujących rzeczy: (*wymienione na drugiej stronie)
+§ 2.
+Komitent oświadcza, że przekazane rzeczy stanowią jego własność i nie są obciążone prawami osób trzecich.
+§ 3.
+Komisant zobowiązany jest na własny koszt ubezpieczyć oddane do sprzedaży komisowej rzeczy od ryzyka kradzieży z włamaniem, ognia i innych zdarzeń losowych, natomiast nie ponosi odpowiedzialności za uszkodzenia powstałe podczas normalnej eksplatacji tzn przymierzania przez klientów.
+§ 4.
+Wysokość należnej Komitentowi kwoty za każdą rzeczy, ustalana jest indywidualnie (*kwoty zapisane na drugiej stronie). Komisant narzuca swoją marże.
+§ 5.
+W przypadku, gdy powierzone do sprzedania rzeczy określone wg umowy, pomimo dołożenia przez Komisanta należytej staranności, nie zostaną sprzedane do dnia @Model.End.ToShortDateString() Komitent jest zobowiązany do odebrania rzeczy i gotówki w ciągu 1 miesiąca od daty zakończenia umowy, w przeciwnym razie rzeczy i gotówka zostają przekazane na rzecz Komisanta.
+§ 6.
+Przyjmowanie oraz rozliczanie rzeczy wyłącznie w czwartki i piątki w godzinach między 12.00 a 18.00 lub po ówczesnym umówienie się poprzez www.facebook.com/szafarisklep .
+§ 7.
+Ewentualne spory mogące wyniknąć na tle stosowania niniejszej umowy strony poddają rozstrzygnięciu sądu właściwego dla siedziby Komisanta.
+
+
+Komisant 							Komitent
+
+
+@foreach (var item in Model.Clothes)
+{
+
+}
+

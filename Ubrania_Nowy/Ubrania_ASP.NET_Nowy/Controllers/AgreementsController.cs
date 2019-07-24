@@ -98,7 +98,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         // POST: Agreements/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles=SD.AdminEndUser)]
+        [Authorize(Roles = SD.AdminEndUser)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(/*[Bind("Id,Name,Surname,Tel,Pesel,Begin,End")] */Agreement agreement/*, string returnUrl = null*/)
@@ -108,8 +108,8 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             {
                 _context.Add(agreement);
                 await _context.SaveChangesAsync();
-                
-                               
+
+
                 var user = new ApplicationUser
                 {
                     UserName = agreement.Id.ToString(),
@@ -118,9 +118,9 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
 
                 var result = await _userManager.CreateAsync(user, agreement.Pesel.ToString());
 
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
-                     if(! await _roleManager.RoleExistsAsync(SD.AdminEndUser))
+                    if (!await _roleManager.RoleExistsAsync(SD.AdminEndUser))
                     {
                         await _roleManager.CreateAsync(new IdentityRole(SD.AdminEndUser));
                     }
@@ -133,7 +133,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
                     await _userManager.AddToRoleAsync(user, SD.CustomerEndUser);
 
                 }
-                
+
                 return RedirectToAction(nameof(Index));
             }
 
@@ -200,7 +200,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             if (id == null)
             {
                 return NotFound();
-            }            
+            }
 
             var agreement = await _context.Agreements
                 .SingleOrDefaultAsync(m => m.Id == id);
@@ -232,13 +232,13 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             {
                 return NotFound();
             }
-          //  var cloth = await _context.Clothes.Where(m => m.Agreement_Id == id).ToListAsync();
-            
+            //  var cloth = await _context.Clothes.Where(m => m.Agreement_Id == id).ToListAsync();
+
 
             TempData["data1"] = id.ToString();
             return RedirectToAction("Create_Cloth");
-          //  return View(cloth);
-           
+            //  return View(cloth);
+
 
         }
         [Authorize(Roles = SD.AdminEndUser)]
@@ -256,7 +256,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
 
             if (ModelState.IsValid)
             {
-                cloth.Agreement_Id =Convert.ToInt32(str); 
+                cloth.Agreement_Id = Convert.ToInt32(str);
                 _context.Add(cloth);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Create_Cloth));
@@ -276,10 +276,24 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             {
                 return NotFound();
             }
-              var cloth = await _context.Clothes.Where(m => m.Agreement_Id == id).ToListAsync();
-        
-              return View(cloth);
+            var cloth = await _context.Clothes.Where(m => m.Agreement_Id == id).ToListAsync();
+
+            return View(cloth);
         }
+
+        public async Task<IActionResult> PrintPDF(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var agreement = await _context.Agreements.SingleOrDefaultAsync(m => m.Id == id);
+
+            var clotes = await _context.Clothes.Where(c => c.Agreement_Id == id).ToListAsync();
+
+            return View(agreement);
+        }
+
 
         public async Task<IActionResult> AgreementClothesCustomer()
         {
@@ -300,6 +314,6 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         {
             return _context.Agreements.Any(e => e.Id == id);
         }
-      
+
     }
 }
