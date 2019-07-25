@@ -24,8 +24,63 @@ Ewentualne spory mogące wyniknąć na tle stosowania niniejszej umowy strony po
 Komisant 							Komitent
 
 
-@foreach (var item in Model.Clothes)
-{
 
-}
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Marka
+            </th>
+            <th>
+                Cena
+            </th>
+            <th>
+                Rozmiar
+            </th>
+            <th>
+                Typ
+            </th>
+            <th>
+                Kolor
+            </th>
+            <th>
+                Cena
+            </th>
+        </tr>
+    </thead>
+    <tbody>
 
+        @foreach (var item in Model.Clothes)
+        {
+
+        <tr>
+            <td>
+                @item.Id
+            </td>
+            <td>
+                @item.Mark
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td>
+                @item.Size
+            </td>
+            <td>
+                @item.Type
+            </td>
+            <td>
+                @item.Colour
+            </td>
+            <td>
+                @item.Price
+            </td>
+
+        </tr>
+
+        }
+
+</table>
