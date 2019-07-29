@@ -52,3 +52,16 @@
     line-height:1.4285;
     color:#555;
 }
+
+.agreement-center {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    margin-right: -50%;
+    padding-top:15px;
+    /* margin-bottom: 10px; */
+    transform: translate(-50%, -50%);
+}
+.agreement-txt{
+    padding-top:13px;
+}
