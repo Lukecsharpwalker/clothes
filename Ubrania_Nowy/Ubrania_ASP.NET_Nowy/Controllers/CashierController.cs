@@ -28,20 +28,8 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> TakePrice(ClothViewModel clothViewModel)
+        public async Task<IActionResult> TakePrice(ClothViewModel clothViewModel, bool close)
         {
-
-            var close = false;
-
-            var SingleCloth = await _context.Clothes.Where(c => c.Id == clothViewModel.Id).SingleOrDefaultAsync();
-
-            clothViewModel.PriceCounter = SingleCloth.Price + clothViewModel.PriceCounter;
-
-            clothViewModel.ClothList.Add(SingleCloth);
-
-            SingleCloth.Sold = true;
-            //await _context.SaveChangesAsync();
-
             if (close == true)
             {
 
@@ -50,8 +38,20 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
                     _context.Update(cloth);
                 }
                 await _context.SaveChangesAsync();
+                return View("Index");
 
             }
+
+
+            var SingleCloth = await _context.Clothes.Where(c => c.Id == clothViewModel.Id).SingleOrDefaultAsync();
+
+            clothViewModel.PriceCounter = SingleCloth.Price + clothViewModel.PriceCounter;
+
+            clothViewModel.ClothList.Add(SingleCloth);
+
+            SingleCloth.Sold = true;
+
+            
 
             return View("Index", clothViewModel);
 

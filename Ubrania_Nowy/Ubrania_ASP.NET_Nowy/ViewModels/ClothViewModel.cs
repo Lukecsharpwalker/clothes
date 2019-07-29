@@ -13,6 +13,7 @@ namespace Ubrania_ASP.NET_Nowy.ViewModels
         [Range(1, int.MaxValue)]
         public int Id { get; set; }
         public int PriceCounter { get; set; }
+        public bool Close { get; set; }
         public List<Cloth> ClothList { get; set; } = new List<Cloth>();
     }
 }

@@ -7,7 +7,7 @@
 
             <input asp-for="Id" value="" autofocus />
             <span asp-validation-for="Id" class="text-danger"></span>
-            <input type="submit" value="OK" class="btn btn-success" style="display:none" />
+            <input type="submit" value="OK" class="btn btn-success"  style="display:none" />
 
             @if (Model != null)
             {
@@ -31,7 +31,7 @@
                 <table class="table table-bordered">
                     <thead class="thead-dark">
                         <tr>
-                            
+
                             <th>
                                 Marka
                             </th>
@@ -50,7 +50,7 @@
                         @foreach (var item in Model.ClothList)
                         {
                             <tr>
-                                
+
                                 <td>
                                     @item.Mark
                                 </td>
@@ -68,17 +68,21 @@
                         <tr>
                             <td colspan="2" class="table-secondary">Cena:</td>
                             <td colspan="3" class="table-secondary">
-                                <input asp-for="PriceCounter" value="@Model.PriceCounter" style="background-color:#f3f3f3;text-align:right"/>
+                                <input asp-for="PriceCounter" value="@Model.PriceCounter" style="background-color:#f3f3f3;text-align:right" />
                             </td>
                         </tr>
                     </tbody>
                 </table>
+
+                <button id="Close"  type="button" class="btn btn-sm btn-primary"></button>
+                
             }
 
         </div>
+       
     </div>
+    @*<button id="close" value="true" class="btn btn-sm btn-dark"> Zamknij </button>*@
+    
 </form>
-@using (Html.BeginForm("TakePrice", "Cashier"))
-{
-    <button id="close" name="close" value="true" class="btn btn-sm btn-dark"> Zamknij </button>
-}
+
+   
