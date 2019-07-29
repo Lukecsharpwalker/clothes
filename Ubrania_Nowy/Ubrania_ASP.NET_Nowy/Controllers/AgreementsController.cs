@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Ubrania_ASP.NET_Nowy.Data;
 using Ubrania_ASP.NET_Nowy.Models;
 using Ubrania_ASP.NET_Nowy.Utility;
+using SelectPdf;
 
 namespace Ubrania_ASP.NET_Nowy.Controllers
 {
@@ -263,12 +264,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             }
             return View(cloth);
         }
-
-
-
-
-
-
+                              
         [Authorize(Roles = SD.AdminEndUser)]
         public async Task<IActionResult> AgreementClothes(int? id)
         {

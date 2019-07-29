@@ -18,7 +18,9 @@
                     @Html.HiddenFor(m => m.ClothList[i].Price)
                     @Html.HiddenFor(m => m.ClothList[i].Size)
                     @Html.HiddenFor(m => m.ClothList[i].Type)
-                }          
+                    @Html.HiddenFor(m => m.ClothList[i].Sold)
+                    @Html.HiddenFor(m => m.ClothList[i].Agreement_Id)
+                }
 
             }
 

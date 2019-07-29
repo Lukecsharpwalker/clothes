@@ -29,10 +29,10 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
 
         [HttpPost]
         public async Task<IActionResult> TakePrice(ClothViewModel clothViewModel)
-        {           
+        {
 
-           
-            
+            var close = false;
+
             var SingleCloth = await _context.Clothes.Where(c => c.Id == clothViewModel.Id).SingleOrDefaultAsync();
 
             clothViewModel.PriceCounter = SingleCloth.Price + clothViewModel.PriceCounter;
@@ -40,13 +40,18 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             clothViewModel.ClothList.Add(SingleCloth);
 
             SingleCloth.Sold = true;
+            //await _context.SaveChangesAsync();
 
-            await _context.SaveChangesAsync();
+            if (close == true)
+            {
 
-            //if (close == true)
-            //{
-            //    _context.Update(PC);
-            //}
+                foreach (var cloth in clothViewModel.ClothList)
+                {
+                    _context.Update(cloth);
+                }
+                await _context.SaveChangesAsync();
+
+            }
 
             return View("Index", clothViewModel);
 
