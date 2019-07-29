@@ -30,7 +30,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         [HttpPost]
         public async Task<IActionResult> TakePrice(ClothViewModel clothViewModel, bool close)
         {
-            if (close == true)
+            if (clothViewModel.Close == true)
             {
 
                 foreach (var cloth in clothViewModel.ClothList)

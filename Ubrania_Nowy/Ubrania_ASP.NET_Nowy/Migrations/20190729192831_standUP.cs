@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Ubrania_ASP.NET_Nowy.Migrations
 {
-    public partial class @new : Migration
+    public partial class standUP : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -80,6 +80,7 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
                     Description = table.Column<string>(nullable: true),
                     Mark = table.Column<string>(nullable: true),
                     Price = table.Column<int>(nullable: false),
+                    PriceCounter = table.Column<int>(nullable: false),
                     Price_RL = table.Column<int>(nullable: false),
                     Size = table.Column<string>(nullable: true),
                     Sold = table.Column<bool>(nullable: false),

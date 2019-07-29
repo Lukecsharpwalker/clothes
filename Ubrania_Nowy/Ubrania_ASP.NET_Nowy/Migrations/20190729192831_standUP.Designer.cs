@@ -11,8 +11,8 @@ using Ubrania_ASP.NET_Nowy.Data;
 namespace Ubrania_ASP.NET_Nowy.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190715204531_new")]
-    partial class @new
+    [Migration("20190729192831_standUP")]
+    partial class standUP
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -224,6 +224,8 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
                     b.Property<string>("Mark");
 
                     b.Property<int>("Price");
+
+                    b.Property<int>("PriceCounter");
 
                     b.Property<int>("Price_RL");
 

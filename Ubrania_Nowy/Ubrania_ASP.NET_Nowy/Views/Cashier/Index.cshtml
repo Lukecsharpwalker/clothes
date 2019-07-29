@@ -1,88 +1,93 @@
 ﻿@model Ubrania_ASP.NET_Nowy.ViewModels.ClothViewModel
 
 <h2>Kasjer</h2>
-<form asp-action="TakePrice">
-    <div class="row">
-        <div class="col-sm-4">
+<body>
+    <form asp-action="TakePrice">
 
-            <input asp-for="Id" value="" autofocus />
-            <span asp-validation-for="Id" class="text-danger"></span>
-            <input type="submit" value="OK" class="btn btn-success"  style="display:none" />
+        <div class="row">
+            <div class="col-sm-4">
 
-            @if (Model != null)
-            {
-                @for (int i = 0; i < Model.ClothList.Count; i++)
+                <input asp-for="Id" value="" autofocus />
+                <span asp-validation-for="Id" class="text-danger"></span>
+                <input type="submit" value="OK" class="btn btn-success" style="display:none" />
+
+                @if (Model != null)
                 {
-                    @Html.HiddenFor(m => m.ClothList[i].Id)
-                    @Html.HiddenFor(m => m.ClothList[i].Mark)
-                    @Html.HiddenFor(m => m.ClothList[i].Price)
-                    @Html.HiddenFor(m => m.ClothList[i].Size)
-                    @Html.HiddenFor(m => m.ClothList[i].Type)
-                    @Html.HiddenFor(m => m.ClothList[i].Sold)
-                    @Html.HiddenFor(m => m.ClothList[i].Agreement_Id)
+                    @for (int i = 0; i < Model.ClothList.Count; i++)
+                    {
+                        @Html.HiddenFor(m => m.ClothList[i].Id)
+                        @Html.HiddenFor(m => m.ClothList[i].Mark)
+                        @Html.HiddenFor(m => m.ClothList[i].Price)
+                        @Html.HiddenFor(m => m.ClothList[i].Size)
+                        @Html.HiddenFor(m => m.ClothList[i].Type)
+                        @Html.HiddenFor(m => m.ClothList[i].Sold)
+                        @Html.HiddenFor(m => m.ClothList[i].Agreement_Id)
+                    }
+
                 }
 
-            }
-
-        </div>
-        <div class="col-sm-4">
-            @if (Model != null)
-            {
-                <table class="table table-bordered">
-                    <thead class="thead-dark">
-                        <tr>
-
-                            <th>
-                                Marka
-                            </th>
-                            <th>
-                                Cena
-                            </th>
-                            <th>
-                                Rozmiar
-                            </th>
-                            <th>
-                                Typ
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.ClothList)
-                        {
+            </div>
+            <div class="col-sm-4">
+                @if (Model != null)
+                {
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
                             <tr>
 
-                                <td>
-                                    @item.Mark
-                                </td>
-                                <td>
-                                    @item.Price
-                                </td>
-                                <td>
-                                    @item.Size
-                                </td>
-                                <td>
-                                    @item.Type
+                                <th>
+                                    Marka
+                                </th>
+                                <th>
+                                    Cena
+                                </th>
+                                <th>
+                                    Rozmiar
+                                </th>
+                                <th>
+                                    Typ
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ClothList)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @item.Mark
+                                    </td>
+                                    <td>
+                                        @item.Price
+                                    </td>
+                                    <td>
+                                        @item.Size
+                                    </td>
+                                    <td>
+                                        @item.Type
+                                    </td>
+                                </tr>
+                            }
+                            <tr>
+                                <td colspan="2" class="table-secondary">Cena:</td>
+                                <td colspan="3" class="table-secondary">
+                                    <input asp-for="PriceCounter" value="@Model.PriceCounter" style="background-color:#f3f3f3;text-align:right" />
                                 </td>
                             </tr>
-                        }
-                        <tr>
-                            <td colspan="2" class="table-secondary">Cena:</td>
-                            <td colspan="3" class="table-secondary">
-                                <input asp-for="PriceCounter" value="@Model.PriceCounter" style="background-color:#f3f3f3;text-align:right" />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
 
-                <button id="Close"  type="button" class="btn btn-sm btn-primary"></button>
-                
-            }
+                    <button onclick="myFunction()" class="btn btn-sm btn-dark"> Zamknij </button>
+                    <input asp-for="Close"  id="close"  style="display:none"/>
+                }
+
+            </div>
 
         </div>
-       
-    </div>
-    @*<button id="close" value="true" class="btn btn-sm btn-dark"> Zamknij </button>*@
-    
-</form>
 
-   
+    </form>
+</body>
+<script>
+    function myFunction() {
+        document.getElementById("close").checked = "true";
+    }
+</script>

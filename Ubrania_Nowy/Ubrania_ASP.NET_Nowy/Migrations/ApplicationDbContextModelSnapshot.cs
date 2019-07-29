@@ -224,6 +224,8 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
 
                     b.Property<int>("Price");
 
+                    b.Property<int>("PriceCounter");
+
                     b.Property<int>("Price_RL");
 
                     b.Property<string>("Size");
