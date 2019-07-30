@@ -35,7 +35,11 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
 
                 foreach (var cloth in clothViewModel.ClothList)
                 {
-                    _context.Update(cloth);
+                    if(cloth.Sold == false)
+                    {
+                        _context.Update(cloth);
+                    }
+                    
                 }
                 await _context.SaveChangesAsync();
                 return View("Index");
