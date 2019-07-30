@@ -15,13 +15,13 @@
                 {
                     @for (int i = 0; i < Model.ClothList.Count; i++)
                     {
-                        @Html.HiddenFor(m => m.ClothList[i].Id)
-                        @Html.HiddenFor(m => m.ClothList[i].Mark)
-                        @Html.HiddenFor(m => m.ClothList[i].Price)
-                        @Html.HiddenFor(m => m.ClothList[i].Size)
-                        @Html.HiddenFor(m => m.ClothList[i].Type)
-                        @Html.HiddenFor(m => m.ClothList[i].Sold)
-                        @Html.HiddenFor(m => m.ClothList[i].Agreement_Id)
+                        <input asp-for="ClothList[i].Id" style="display:none" />
+                        <input asp-for="ClothList[i].Mark" style="display:none" />
+                        <input asp-for="ClothList[i].Price" style="display:none" />
+                        <input asp-for="ClothList[i].Size" style="display:none" />
+                        <input asp-for="ClothList[i].Type" style="display:none" />
+                        <input asp-for="ClothList[i].Sold" style="display:none" />
+                        <input asp-for="ClothList[i].Agreement_Id" style="display:none" />
                     }
 
                 }
