@@ -15,13 +15,13 @@
                 {
                     @for (int i = 0; i < Model.ClothList.Count; i++)
                     {
-                        <input asp-for="ClothList[i].Id" style="display:none" />
-                        <input asp-for="ClothList[i].Mark" style="display:none" />
-                        <input asp-for="ClothList[i].Price" style="display:none" />
-                        <input asp-for="ClothList[i].Size" style="display:none" />
-                        <input asp-for="ClothList[i].Type" style="display:none" />
-                        <input asp-for="ClothList[i].Sold" style="display:none" />
-                        <input asp-for="ClothList[i].Agreement_Id" style="display:none" />
+                        <input asp-for="ClothList[i].Id" id="id" style="display:none" />
+                        <input asp-for="ClothList[i].Mark" id="mark" style="display:none" />
+                        <input asp-for="ClothList[i].Price" id="price" style="display:none" />
+                        <input asp-for="ClothList[i].Size" id="size" style="display:none" />
+                        <input asp-for="ClothList[i].Type" id="type" style="display:none" />
+                        <input asp-for="ClothList[i].Sold" id="sold" style="display:none" />
+                        <input asp-for="ClothList[i].Agreement_Id" id="aid" style="display:none" />
                     }
 
                 }
@@ -78,6 +78,7 @@
 
                     <button onclick="myFunction()" class="btn btn-sm btn-dark"> Zamknij </button>
                     <input asp-for="Close"  id="close"  style="display:none"/>
+                    <button onclick="myFunction()" class="btn btn-sm btn-dark"> Cofnij </button>
                 }
 
             </div>

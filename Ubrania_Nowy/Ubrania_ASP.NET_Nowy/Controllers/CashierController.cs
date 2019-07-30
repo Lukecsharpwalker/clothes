@@ -28,7 +28,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> TakePrice(ClothViewModel clothViewModel, bool close)
+        public async Task<IActionResult> TakePrice(ClothViewModel clothViewModel)
         {
             if (clothViewModel.Close == true)
             {
@@ -44,6 +44,14 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
                 await _context.SaveChangesAsync();
                 return View("Index");
 
+            }
+
+            if(clothViewModel.Back == true)
+            {
+                clothViewModel.ClothList.RemoveAt(clothViewModel.ClothList.Count -1);
+                var priceSubstract = clothViewModel.ClothList.LastOrDefault().Price;
+                clothViewModel.PriceCounter -= priceSubstract;
+                return View("Index", clothViewModel);
             }
 
 
