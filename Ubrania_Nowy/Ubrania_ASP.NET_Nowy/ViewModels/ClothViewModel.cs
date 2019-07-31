@@ -14,7 +14,7 @@ namespace Ubrania_ASP.NET_Nowy.ViewModels
         public int Id { get; set; }
         public int PriceCounter { get; set; }
         public bool Close { get; set; }
-        public bool Back { get; set; }
+        public string Back { get; set; }
         public List<Cloth> ClothList { get; set; } = new List<Cloth>();
     }
 }

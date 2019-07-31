@@ -34,24 +34,23 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             {
 
                 foreach (var cloth in clothViewModel.ClothList)
-                {
-                    if(cloth.Sold == false)
-                    {
+                {                   
                         _context.Update(cloth);
-                    }
-                    
+                                        
                 }
                 await _context.SaveChangesAsync();
                 return View("Index");
 
             }
 
-            if(clothViewModel.Back == true)
+            if(clothViewModel.Back == "true")
             {
-                clothViewModel.ClothList.RemoveAt(clothViewModel.ClothList.Count -1);
                 var priceSubstract = clothViewModel.ClothList.LastOrDefault().Price;
+                clothViewModel.ClothList.RemoveAt(clothViewModel.ClothList.Count -1);               
                 clothViewModel.PriceCounter -= priceSubstract;
+                clothViewModel.Back = "false";
                 return View("Index", clothViewModel);
+                
             }
 
 

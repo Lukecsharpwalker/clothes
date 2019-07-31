@@ -76,9 +76,10 @@
                         </tbody>
                     </table>
 
-                    <button onclick="myFunction()" class="btn btn-sm btn-dark"> Zamknij </button>
-                    <input asp-for="Close"  id="close"  style="display:none"/>
-                    <button onclick="myFunction()" class="btn btn-sm btn-dark"> Cofnij </button>
+                    <button onclick="closeBill()" class="btn btn-sm btn-dark"> Zamknij </button>
+                    <input asp-for="Close" id="close" style="display:none" />
+                    <button onclick="removeLastItemFromBill()" class="btn btn-sm btn-dark"> Cofnij </button>
+                    <input asp-for="Back" id="back" value="@Model.Close" style="display:none"/>
                 }
 
             </div>
@@ -88,7 +89,10 @@
     </form>
 </body>
 <script>
-    function myFunction() {
+    function closeBill() {
         document.getElementById("close").checked = "true";
+    }
+    function removeLastItemFromBill() {
+        document.getElementById("back").value = "true";
     }
 </script>
