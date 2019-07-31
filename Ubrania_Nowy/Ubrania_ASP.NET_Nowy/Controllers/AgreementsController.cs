@@ -12,6 +12,7 @@ using Ubrania_ASP.NET_Nowy.Data;
 using Ubrania_ASP.NET_Nowy.Models;
 using Ubrania_ASP.NET_Nowy.Utility;
 using SelectPdf;
+using ZXing;
 
 namespace Ubrania_ASP.NET_Nowy.Controllers
 {
@@ -286,6 +287,8 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             var agreement = await _context.Agreements.SingleOrDefaultAsync(m => m.Id == id);
 
             var clotes = await _context.Clothes.Where(c => c.Agreement_Id == id).ToListAsync();
+
+
 
             return View(agreement);
         }
