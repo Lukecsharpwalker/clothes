@@ -12,7 +12,9 @@ using Ubrania_ASP.NET_Nowy.Data;
 using Ubrania_ASP.NET_Nowy.Models;
 using Ubrania_ASP.NET_Nowy.Utility;
 using SelectPdf;
-using ZXing;
+using ZXing.CoreCompat.System.Drawing;
+using Ubrania_ASP.NET_Nowy.ViewModels;
+using System.Drawing;
 
 namespace Ubrania_ASP.NET_Nowy.Controllers
 {
@@ -287,11 +289,22 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             var agreement = await _context.Agreements.SingleOrDefaultAsync(m => m.Id == id);
 
             var clotes = await _context.Clothes.Where(c => c.Agreement_Id == id).ToListAsync();
-
-
-
+                       
             return View(agreement);
         }
+
+        public async Task<IActionResult> CreateTicket(int? id, TicketViewModel ticketViewModel)
+        {
+            var clotes = await _context.Clothes.Where(c => c.Agreement_Id == id).ToListAsync();
+
+            BarcodeWriter writer = new BarcodeWriter { Format = ZXing.BarcodeFormat.CODE_128};
+            var barcode = writer.Write("test");
+
+
+            
+            return View(ticketViewModel);
+        }
+
 
 
         public async Task<IActionResult> AgreementClothesCustomer()
