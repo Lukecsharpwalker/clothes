@@ -1,8 +1,8 @@
 ﻿@model Ubrania_ASP.NET_Nowy.ViewModels.TicketViewModel
 @{
-    ViewData["Title"] = "CreateTicket";
+    var base64 = Convert.ToBase64String(Model.Barcode);
+    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 }
 
 <h2>CreateTicket</h2>
-
-@Model.Barcode
+<img src="@imgSrc" />

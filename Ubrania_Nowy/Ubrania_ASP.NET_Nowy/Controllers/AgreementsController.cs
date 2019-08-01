@@ -1,20 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Ubrania_ASP.NET_Nowy.Data;
 using Ubrania_ASP.NET_Nowy.Models;
 using Ubrania_ASP.NET_Nowy.Utility;
-using SelectPdf;
-using ZXing.CoreCompat.System.Drawing;
+using ZXing;
 using Ubrania_ASP.NET_Nowy.ViewModels;
+
+
+using System.IO;
+using System.Drawing.Imaging;
 using System.Drawing;
+using ZXing.CoreCompat.System.Drawing;
+using System.Collections.Generic;
 
 namespace Ubrania_ASP.NET_Nowy.Controllers
 {
@@ -296,12 +299,21 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         public async Task<IActionResult> CreateTicket(int? id, TicketViewModel ticketViewModel)
         {
             var clotes = await _context.Clothes.Where(c => c.Agreement_Id == id).ToListAsync();
+            Image bmp;
 
-            BarcodeWriter writer = new BarcodeWriter { Format = ZXing.BarcodeFormat.CODE_128};
-            var barcode = writer.Write("test");
-
+            BarcodeWriter writer = new BarcodeWriter
+            {
+                Format = BarcodeFormat.CODE_128,                    
+            };
 
             
+                var barcode = writer.Write("test");
+                     
+            
+            ImageConverter converter = new ImageConverter();
+            ticketViewModel.Barcode = (byte[])converter.ConvertTo(barcode, typeof(byte[]));
+
+
             return View(ticketViewModel);
         }
 
