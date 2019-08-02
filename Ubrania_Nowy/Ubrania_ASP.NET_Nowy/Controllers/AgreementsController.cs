@@ -312,10 +312,9 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             Bitmap(@"C:\Users\jablonskil\Downloads\test.jpg");
             Graphics graphicImage = Graphics.FromImage(bitMapImage);
             graphicImage.SmoothingMode = SmoothingMode.AntiAlias;
-            graphicImage.DrawString(clothes[0].Price.ToString(),
-            new Font("Arial", 12, FontStyle.Bold),
-             SystemBrushes.WindowText, new Point(100, 250));
-            graphicImage.DrawArc(new Pen(Color.Red, 3), 90, 235, 150, 50, 0, 360);
+            graphicImage.DrawString(clothes[0].Price.ToString() + "zł",
+            new Font("Arial", 26, FontStyle.Bold),
+            SystemBrushes.WindowText, new Point(50, 200));            
             Response.ContentType = "image/jpeg";
             bitMapImage.Save(@"C:\Users\jablonskil\Downloads\new\test.jpg", ImageFormat.Jpeg);
 
