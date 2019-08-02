@@ -17,6 +17,7 @@ using System.Drawing.Imaging;
 using System.Drawing;
 using System.Collections.Generic;
 using NetBarcode;
+using System.Drawing.Drawing2D;
 
 namespace Ubrania_ASP.NET_Nowy.Controllers
 {
@@ -299,23 +300,24 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         {
             var clothes = await _context.Clothes.Where(c => c.Agreement_Id == id).ToListAsync();
             
-
-
             foreach (Cloth cloth in clothes)
             {
                 var barcode1 = new Barcode(cloth.Id.ToString(), NetBarcode.Type.Code128, true);
               
                 ticketViewModel.Barcodes.Add(barcode1.GetBase64Image());
-            }            
-
-            //ImageConverter converter = new ImageConverter();
-
-            //foreach (var barCode in BarcodesList)
-            //{
-            //    ticketViewModel.Barcodes.Add((byte[])converter.ConvertTo(barCode, typeof(byte[])));
-            //}
+            }
 
 
+            Bitmap bitMapImage = new
+            Bitmap(@"C:\Users\jablonskil\Downloads\test.jpg");
+            Graphics graphicImage = Graphics.FromImage(bitMapImage);
+            graphicImage.SmoothingMode = SmoothingMode.AntiAlias;
+            graphicImage.DrawString(clothes[0].Price.ToString(),
+            new Font("Arial", 12, FontStyle.Bold),
+             SystemBrushes.WindowText, new Point(100, 250));
+            graphicImage.DrawArc(new Pen(Color.Red, 3), 90, 235, 150, 50, 0, 360);
+            Response.ContentType = "image/jpeg";
+            bitMapImage.Save(@"C:\Users\jablonskil\Downloads\new\test.jpg", ImageFormat.Jpeg);
 
 
 
