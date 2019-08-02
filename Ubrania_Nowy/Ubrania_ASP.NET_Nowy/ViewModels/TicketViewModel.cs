@@ -8,6 +8,6 @@ namespace Ubrania_ASP.NET_Nowy.ViewModels
 {
     public class TicketViewModel
     {
-        public byte[] Barcode { get; set; }
+        public List<byte[]> Barcodes { get; set; } = new List<byte[]>();
     }
 }

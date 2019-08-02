@@ -298,21 +298,27 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
 
         public async Task<IActionResult> CreateTicket(int? id, TicketViewModel ticketViewModel)
         {
-            var clotes = await _context.Clothes.Where(c => c.Agreement_Id == id).ToListAsync();
-            Image bmp;
+            var clothes = await _context.Clothes.Where(c => c.Agreement_Id == id).ToListAsync();
+
+            List<Bitmap> BarcodesList = new List<Bitmap>();
 
             BarcodeWriter writer = new BarcodeWriter
             {
                 Format = BarcodeFormat.CODE_128,                    
             };
 
-            
-                var barcode = writer.Write("test");
+            foreach (Cloth cloth in clothes)
+            {
+                BarcodesList.Add(writer.Write(cloth.Id.ToString()));
+            }               
                      
             
             ImageConverter converter = new ImageConverter();
-            ticketViewModel.Barcode = (byte[])converter.ConvertTo(barcode, typeof(byte[]));
 
+            foreach (var barCode in BarcodesList)
+            {
+                ticketViewModel.Barcodes.Add((byte[])converter.ConvertTo(barCode, typeof(byte[])));
+            }
 
             return View(ticketViewModel);
         }
