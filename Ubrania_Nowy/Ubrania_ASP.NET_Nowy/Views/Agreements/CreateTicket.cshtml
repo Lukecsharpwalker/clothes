@@ -8,10 +8,11 @@
     }
 
     List<string> TicketList = new List<string>();
-    foreach (var byteArray in Model.Ticket)
+    foreach (var byteArray2 in Model.Ticket)
     {
-        var base64 = Convert.ToBase64String(byteArray);
-        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        var base64 = Convert.ToBase64String(byteArray2);
+        var imgSrc2 = String.Format("data:image/gif;base64,{0}", base64);
+        TicketList.Add(imgSrc2);
     }
 }
 
