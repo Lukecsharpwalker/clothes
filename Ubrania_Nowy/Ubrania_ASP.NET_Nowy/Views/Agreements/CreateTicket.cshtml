@@ -1,8 +1,22 @@
 ﻿@model Ubrania_ASP.NET_Nowy.ViewModels.TicketViewModel
 @{
-    var base64 = Convert.ToBase64String(Model.Barcode);
-    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    List<string> ImagesList = new List<string>();
+    foreach (var byteArray in Model.Barcodes)
+    {
+        var base64 = Convert.ToBase64String(byteArray);
+        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        ImagesList.Add(imgSrc);
+    }
+
 }
 
-<h2>CreateTicket</h2>
-<img src="@imgSrc" />
+
+<br />
+
+
+@foreach (var image in ImagesList)
+{
+    <img src="@image" />
+}
+
+
