@@ -1,112 +1,115 @@
 ﻿@model Agreement
 <br />
-<div style="height:355mm">
-    <div style="text-align:right">
-        Poznań Dnia: @DateTime.Now.ToShortDateString()
-    </div>
-    <div class="agreement-center">UMOWA KOMISU nr @Model.Id</div>
+<body onload="window.print()">
+    <div style="height:355mm">
+        <div style="text-align:right">
+            Poznań Dnia: @DateTime.Now.ToShortDateString()
+        </div>
+        <div class="agreement-center">UMOWA KOMISU nr @Model.Id</div>
 
-    <div style="padding-top:20px">
-        Zawarta w dniu @Model.Begin.ToShortDateString() pomiędzy  SZAFARI  z siedzibą w Poznaniu,  przy
-        ul. Ratajczaka 28 ,  w imieniu którego działa ;  Iga Staniul (nr. Telefonu ) zwana w treści umowy "Komisantem", a @Model.Name @Model.Surname, zwanym w treści umowy "Komitentem", o następującej treści:
-    </div>
-    <div class="agreement-center">§ 1.</div>
-    <div class="agreement-txt">
-        Komisant zobowiązuje się do sprzedaży komisowej we własnym imieniu otrzymanych od Komitenta następujących rzeczy: (*wymienione na drugiej stronie)
-    </div>
-    <div class="agreement-center">§ 2.</div>
-    <div class="agreement-txt">
-        Komitent oświadcza, że przekazane rzeczy stanowią jego własność i nie są obciążone prawami osób trzecich.
-    </div>
-    <div class="agreement-center">
-        § 3.
-    </div>
-    <div class="agreement-txt">
-        Komisant zobowiązany jest na własny koszt ubezpieczyć oddane do sprzedaży komisowej rzeczy od ryzyka kradzieży z włamaniem, ognia i innych zdarzeń losowych, natomiast nie ponosi odpowiedzialności za uszkodzenia powstałe podczas normalnej eksplatacji tzn przymierzania przez klientów.
-    </div>
-    <div class="agreement-center">
-        § 4.
-    </div>
-    <div class="agreement-txt">
-        Wysokość należnej Komitentowi kwoty za każdą rzeczy, ustalana jest indywidualnie (*kwoty zapisane na drugiej stronie). Komisant narzuca swoją marże.
-    </div>
-    <div class="agreement-center">
-        § 5.
+        <div style="padding-top:20px">
+            Zawarta w dniu @Model.Begin.ToShortDateString() pomiędzy  SZAFARI  z siedzibą w Poznaniu,  przy
+            ul. Ratajczaka 28 ,  w imieniu którego działa ;  Iga Staniul (nr. Telefonu ) zwana w treści umowy "Komisantem", a @Model.Name @Model.Surname, zwanym w treści umowy "Komitentem", o następującej treści:
+        </div>
+        <div class="agreement-center">§ 1.</div>
+        <div class="agreement-txt">
+            Komisant zobowiązuje się do sprzedaży komisowej we własnym imieniu otrzymanych od Komitenta następujących rzeczy: (*wymienione na drugiej stronie)
+        </div>
+        <div class="agreement-center">§ 2.</div>
+        <div class="agreement-txt">
+            Komitent oświadcza, że przekazane rzeczy stanowią jego własność i nie są obciążone prawami osób trzecich.
+        </div>
+        <div class="agreement-center">
+            § 3.
+        </div>
+        <div class="agreement-txt">
+            Komisant zobowiązany jest na własny koszt ubezpieczyć oddane do sprzedaży komisowej rzeczy od ryzyka kradzieży z włamaniem, ognia i innych zdarzeń losowych, natomiast nie ponosi odpowiedzialności za uszkodzenia powstałe podczas normalnej eksplatacji tzn przymierzania przez klientów.
+        </div>
+        <div class="agreement-center">
+            § 4.
+        </div>
+        <div class="agreement-txt">
+            Wysokość należnej Komitentowi kwoty za każdą rzeczy, ustalana jest indywidualnie (*kwoty zapisane na drugiej stronie). Komisant narzuca swoją marże.
+        </div>
+        <div class="agreement-center">
+            § 5.
+        </div>
+
+        <div class="agreement-txt">
+            W przypadku, gdy powierzone do sprzedania rzeczy określone wg umowy, pomimo dołożenia przez Komisanta należytej staranności, nie zostaną sprzedane do dnia @Model.End.ToShortDateString() Komitent jest zobowiązany do odebrania rzeczy i gotówki w ciągu 1 miesiąca od daty zakończenia umowy, w przeciwnym razie rzeczy i gotówka zostają przekazane na rzecz Komisanta.
+        </div>
+
+        <div class="agreement-center">§ 6.</div>
+
+        <div class="agreement-txt">
+            Przyjmowanie oraz rozliczanie rzeczy wyłącznie w czwartki i piątki w godzinach między 12.00 a 18.00 lub po ówczesnym umówienie się poprzez www.facebook.com/szafarisklep .
+        </div>
+        <div class="agreement-center">
+            § 7.
+        </div>
+        <div class="agreement-txt">
+            Ewentualne spory mogące wyniknąć na tle stosowania niniejszej umowy strony poddają rozstrzygnięciu sądu właściwego dla siedziby Komisanta.
+        </div>
+        <br />
+        <div>
+            <p style="float:left">Komisant</p>
+            <p style="float:right">Komitent</p>
+        </div>
     </div>
 
-    <div class="agreement-txt">
-        W przypadku, gdy powierzone do sprzedania rzeczy określone wg umowy, pomimo dołożenia przez Komisanta należytej staranności, nie zostaną sprzedane do dnia @Model.End.ToShortDateString() Komitent jest zobowiązany do odebrania rzeczy i gotówki w ciągu 1 miesiąca od daty zakończenia umowy, w przeciwnym razie rzeczy i gotówka zostają przekazane na rzecz Komisanta.
-    </div>
 
-    <div class="agreement-center">§ 6.</div>
 
-    <div class="agreement-txt">
-        Przyjmowanie oraz rozliczanie rzeczy wyłącznie w czwartki i piątki w godzinach między 12.00 a 18.00 lub po ówczesnym umówienie się poprzez www.facebook.com/szafarisklep .
-    </div>
-    <div class="agreement-center">
-        § 7.
-    </div>
-    <div class="agreement-txt">
-        Ewentualne spory mogące wyniknąć na tle stosowania niniejszej umowy strony poddają rozstrzygnięciu sądu właściwego dla siedziby Komisanta.
-    </div>
     <div>
-        <p style="float:left">Komisant</p>
-        <p style="float:right">Komitent</p>
-    </div>
-</div>
-
-
-
-<div>
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th>
-                    Marka
-                </th>
-                <th>
-                    Cena
-                </th>
-                <th>
-                    Rozmiar
-                </th>
-                <th>
-                    Typ
-                </th>
-                <th>
-                    Kolor
-                </th>
-                <th>
-                    Cena
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach (var item in Model.Clothes)
-            {
-
+        <table class="table table-bordered">
+            <thead class="thead-dark">
                 <tr>
-                    <td>
-                        @item.Mark
-                    </td>
-                    <td>
-                        @item.Price
-                    </td>
-                    <td>
-                        @item.Size
-                    </td>
-                    <td>
-                        @item.Type
-                    </td>
-                    <td>
-                        @item.Colour
-                    </td>
-                    <td>
-                        @item.Price
-                    </td>
+                    <th>
+                        Marka
+                    </th>
+                    <th>
+                        Cena
+                    </th>
+                    <th>
+                        Rozmiar
+                    </th>
+                    <th>
+                        Typ
+                    </th>
+                    <th>
+                        Kolor
+                    </th>
+                    <th>
+                        Cena
+                    </th>
                 </tr>
-            }
+            </thead>
+            <tbody>
 
-    </table>
-</div>
+                @foreach (var item in Model.Clothes)
+                {
+
+                    <tr>
+                        <td>
+                            @item.Mark
+                        </td>
+                        <td>
+                            @item.Price
+                        </td>
+                        <td>
+                            @item.Size
+                        </td>
+                        <td>
+                            @item.Type
+                        </td>
+                        <td>
+                            @item.Colour
+                        </td>
+                        <td>
+                            @item.Price
+                        </td>
+                    </tr>
+                }
+
+        </table>
+    </div>
+    </body>
