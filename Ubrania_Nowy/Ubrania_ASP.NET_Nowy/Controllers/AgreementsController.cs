@@ -304,23 +304,25 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
                 var barcode1 = new Barcode(cloth.Id.ToString(), NetBarcode.Type.Code128, true);
               
                 ticketViewModel.Barcodes.Add(barcode1.GetBase64Image());
+
+                Bitmap bitMapImage = new
+                Bitmap(@"C:\Users\jablonskil\Downloads\test.jpg");
+                Graphics graphicImage = Graphics.FromImage(bitMapImage);
+                graphicImage.SmoothingMode = SmoothingMode.AntiAlias;
+                graphicImage.DrawString(cloth.Price.ToString() + "zł",
+                new Font("Arial", 26, FontStyle.Bold),
+                SystemBrushes.WindowText, new Point(50, 200));
+
+
+                using (var stream = new MemoryStream())
+                {
+                    bitMapImage.Save(stream, ImageFormat.Bmp);
+                    ticketViewModel.Ticket.Add(stream.ToArray());
+                }
             }
 
 
-            Bitmap bitMapImage = new
-            Bitmap(@"C:\Users\jablonskil\Downloads\test.jpg");
-            Graphics graphicImage = Graphics.FromImage(bitMapImage);
-            graphicImage.SmoothingMode = SmoothingMode.AntiAlias;
-            graphicImage.DrawString(clothes[1].Price.ToString() + "zł",
-            new Font("Arial", 26, FontStyle.Bold),
-            SystemBrushes.WindowText, new Point(50, 200));
-
-
-            using (var stream = new MemoryStream())
-            {
-               bitMapImage.Save(stream, ImageFormat.Bmp);
-               ticketViewModel.Ticket.Add(stream.ToArray());
-            }
+            
 
             //Response.ContentType = "image/jpeg";
             //bitMapImage.Save(@"C:\Users\jablonskil\Downloads\new\test.jpg", ImageFormat.Jpeg);

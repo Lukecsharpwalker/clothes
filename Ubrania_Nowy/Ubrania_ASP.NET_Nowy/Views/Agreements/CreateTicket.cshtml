@@ -20,13 +20,19 @@
 <br />
 
 
-@foreach (var image in ImagesList)
+@for (int i = 0; i < ImagesList.Count; i++)
 {
-    <img src="@image" />
+    <img src="@ImagesList[i]" />
+    <img src="@TicketList[i]" />
 }
 
-@foreach (var ticker in TicketList)
-{
-    <img src="@ticker" />
-}
+@*@foreach (var image in ImagesList)
+    {
+        <img src="@image" />
+    }
+
+    @foreach (var ticker in TicketList)
+    {
+        <img src="@ticker" />
+    }*@
 
