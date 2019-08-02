@@ -301,8 +301,13 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             
             foreach (Cloth cloth in clothes)
             {
-                var barcode1 = new Barcode(cloth.Id.ToString(), NetBarcode.Type.Code128, true);
-              
+                cloth.Type = cloth.Type ?? "";
+                cloth.Description = cloth.Description ?? "";
+                cloth.Mark = cloth.Mark ?? "";
+                cloth.Size = cloth.Size ?? "";               
+
+
+                var barcode1 = new Barcode(cloth.Id.ToString(), NetBarcode.Type.Code128, true);              
                 ticketViewModel.Barcodes.Add(barcode1.GetBase64Image());
 
                 Bitmap bitMapImage = new
@@ -310,8 +315,15 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
                 Graphics graphicImage = Graphics.FromImage(bitMapImage);
                 graphicImage.SmoothingMode = SmoothingMode.AntiAlias;
                 graphicImage.DrawString(cloth.Price.ToString() + "zł",
-                new Font("Arial", 26, FontStyle.Bold),
-                SystemBrushes.WindowText, new Point(50, 200));
+                new Font("Arial", 30, FontStyle.Italic),
+                SystemBrushes.WindowText, new Point(35, 115));                
+                graphicImage.DrawString(
+                    cloth.Type+ " " +
+                    cloth.Mark+ " " +
+                    cloth.Description+ " " +
+                    cloth.Size,
+                new Font("Arial", 9, FontStyle.Italic),
+                SystemBrushes.WindowText, new Point(1, 205));
 
 
                 using (var stream = new MemoryStream())
@@ -320,14 +332,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
                     ticketViewModel.Ticket.Add(stream.ToArray());
                 }
             }
-
-
             
-
-            //Response.ContentType = "image/jpeg";
-            //bitMapImage.Save(@"C:\Users\jablonskil\Downloads\new\test.jpg", ImageFormat.Jpeg);
-
-
             return View(ticketViewModel);
         }
 
