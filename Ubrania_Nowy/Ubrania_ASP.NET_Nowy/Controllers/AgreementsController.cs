@@ -9,15 +9,14 @@ using Microsoft.Extensions.Logging;
 using Ubrania_ASP.NET_Nowy.Data;
 using Ubrania_ASP.NET_Nowy.Models;
 using Ubrania_ASP.NET_Nowy.Utility;
-using ZXing;
 using Ubrania_ASP.NET_Nowy.ViewModels;
 
 
 using System.IO;
 using System.Drawing.Imaging;
 using System.Drawing;
-using ZXing.CoreCompat.System.Drawing;
 using System.Collections.Generic;
+using NetBarcode;
 
 namespace Ubrania_ASP.NET_Nowy.Controllers
 {
@@ -270,7 +269,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             }
             return View(cloth);
         }
-                              
+
         [Authorize(Roles = SD.AdminEndUser)]
         public async Task<IActionResult> AgreementClothes(int? id)
         {
@@ -292,33 +291,35 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             var agreement = await _context.Agreements.SingleOrDefaultAsync(m => m.Id == id);
 
             var clotes = await _context.Clothes.Where(c => c.Agreement_Id == id).ToListAsync();
-                       
+
             return View(agreement);
         }
 
         public async Task<IActionResult> CreateTicket(int? id, TicketViewModel ticketViewModel)
         {
             var clothes = await _context.Clothes.Where(c => c.Agreement_Id == id).ToListAsync();
+            
 
-            List<Bitmap> BarcodesList = new List<Bitmap>();
-
-            BarcodeWriter writer = new BarcodeWriter
-            {
-                Format = BarcodeFormat.CODE_128,                    
-            };
 
             foreach (Cloth cloth in clothes)
             {
-                BarcodesList.Add(writer.Write(cloth.Id.ToString()));
-            }               
-                     
-            
-            ImageConverter converter = new ImageConverter();
+                var barcode1 = new Barcode(cloth.Id.ToString(), NetBarcode.Type.Code128, true);
+              
+                ticketViewModel.Barcodes.Add(barcode1.GetBase64Image());
+            }            
 
-            foreach (var barCode in BarcodesList)
-            {
-                ticketViewModel.Barcodes.Add((byte[])converter.ConvertTo(barCode, typeof(byte[])));
-            }
+            //ImageConverter converter = new ImageConverter();
+
+            //foreach (var barCode in BarcodesList)
+            //{
+            //    ticketViewModel.Barcodes.Add((byte[])converter.ConvertTo(barCode, typeof(byte[])));
+            //}
+
+
+
+
+
+
 
             return View(ticketViewModel);
         }
