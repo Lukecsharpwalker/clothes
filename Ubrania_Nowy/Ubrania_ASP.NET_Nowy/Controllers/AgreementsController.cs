@@ -11,7 +11,6 @@ using Ubrania_ASP.NET_Nowy.Models;
 using Ubrania_ASP.NET_Nowy.Utility;
 using Ubrania_ASP.NET_Nowy.ViewModels;
 
-
 using System.IO;
 using System.Drawing.Imaging;
 using System.Drawing;
@@ -314,12 +313,17 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             graphicImage.SmoothingMode = SmoothingMode.AntiAlias;
             graphicImage.DrawString(clothes[0].Price.ToString() + "zł",
             new Font("Arial", 26, FontStyle.Bold),
-            SystemBrushes.WindowText, new Point(50, 200));            
-            Response.ContentType = "image/jpeg";
-            bitMapImage.Save(@"C:\Users\jablonskil\Downloads\new\test.jpg", ImageFormat.Jpeg);
+            SystemBrushes.WindowText, new Point(50, 200));
 
 
+            using (var stream = new MemoryStream())
+            {
+               bitMapImage.Save(stream, ImageFormat.Bmp);
+               ticketViewModel.Ticket.Add(stream.ToArray());
+            }
 
+            //Response.ContentType = "image/jpeg";
+            //bitMapImage.Save(@"C:\Users\jablonskil\Downloads\new\test.jpg", ImageFormat.Jpeg);
 
 
             return View(ticketViewModel);
