@@ -278,7 +278,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
                 return NotFound();
             }
             var cloth = await _context.Clothes.Where(m => m.Agreement_Id == id).ToListAsync();
-
+            var agreement = await _context.Agreements.Where(a => a.Id == id).ToListAsync();
             return View(cloth);
         }
 
