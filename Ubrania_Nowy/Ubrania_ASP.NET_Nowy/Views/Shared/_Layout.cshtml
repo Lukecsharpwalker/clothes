@@ -35,7 +35,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" asp-controller="Agreements" asp-action="Index">Lista Umów</a>
                             <a class="dropdown-item" asp-controller="Clothes" asp-action="Index">Lista Ubrań</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="#">Raporty</a>
                         </div>
                     </li>
                 }
@@ -54,13 +54,9 @@
 
                 @if (User.IsInRole(SD.AdminEndUser))
                 {
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Zarządzanie
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" asp-controller="Cashier" asp-action="Index">Kasejer</a>
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Cashier" asp-action="Index">Kasejer</a>
+                        
                     </li>
                 }
             </ul>

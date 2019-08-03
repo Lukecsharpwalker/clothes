@@ -55,7 +55,8 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
 
 
             var SingleCloth = await _context.Clothes.Where(c => c.Id == clothViewModel.Id).SingleOrDefaultAsync();
-
+            if (SingleCloth != null && !(clothViewModel.ClothList.Exists(x => x.Id == SingleCloth.Id)))
+            { 
             clothViewModel.PriceCounter = SingleCloth.Price + clothViewModel.PriceCounter;
 
             clothViewModel.ClothList.Add(SingleCloth);
@@ -63,7 +64,8 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             SingleCloth.Sold = true;
 
             
-
+            return View("Index", clothViewModel);
+            }
             return View("Index", clothViewModel);
 
         }
