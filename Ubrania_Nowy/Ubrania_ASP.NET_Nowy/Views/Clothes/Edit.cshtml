@@ -5,14 +5,15 @@
 }
 
 <br />
-<h2>Edytuj Ubranie</h2>
+<h2>Edycja Ubrania</h2>
 <br />
 
-<h3>Edytuj ubranie należące do: @Html.DisplayFor(Model => Model.Agreement.Name)  @Html.DisplayFor(Model => Model.Agreement.Surname)</h3>
+
 
 <hr />
 
 <form asp-action="Edit">
+    <h3>Edytuj ubranie należące do: @Html.DisplayFor(Model => Model.Agreement.Name)  @Html.DisplayFor(Model => Model.Agreement.Surname)</h3>
     <div class="form-border">
 
 
@@ -20,7 +21,7 @@
         <input type="hidden" asp-for="Id" />
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="Mark" class="control-label"></label>
+                <label class="control-label">Marka</label>
             </div>
             <div class="col-4">
                 <input asp-for="Mark" class="form-control" />
@@ -30,7 +31,7 @@
         </div>
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="Size" class="control-label"></label>
+                <label class="control-label">Rozmiar</label>
             </div>
             <div class="col-4">
                 <input asp-for="Size" class="form-control" />
@@ -40,7 +41,7 @@
         </div>
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="Colour" class="control-label"></label>
+                <label class="control-label">Kolor</label>
             </div>
             <div class="col-4">
                 <input asp-for="Colour" class="form-control" />
@@ -50,7 +51,7 @@
         </div>
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="Type" class="control-label"></label>
+                <label class="control-label">Typ</label>
             </div>
             <div class="col-4">
                 <input asp-for="Type" class="form-control" />
@@ -60,7 +61,7 @@
         </div>
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="Description" class="control-label"></label>
+                <label class="control-label">Opis</label>
             </div>
             <div class="col-4">
                 <input asp-for="Description" class="form-control" />
@@ -70,7 +71,7 @@
         </div>
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="Price" class="control-label"></label>
+                <label class="control-label">Cena</label>
             </div>
             <div class="col-4">
                 <input asp-for="Price" class="form-control" />
@@ -81,7 +82,7 @@
 
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="Price_RL" class="control-label"></label>
+                <label class="control-label">Cena Sprzedaży</label>
             </div>
             <div class="col-4">
                 <input asp-for="Price_RL" class="form-control" />
@@ -92,13 +93,23 @@
 
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="Agreement_Id" class="control-label"></label>
+                <label class="control-label">Numer Umowy</label>
             </div>
             <div class="col-4">
                 <input asp-for="Agreement_Id" class="form-control" />
             </div>
             <span asp-validation-for="Agreement_Id" class="text-danger"></span>
 
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label class="control-label">Sprzedane?</label>
+            </div>
+            <div class="col-4">
+                <input asp-for="Sold" class="form-control" />
+            </div>
+            <span asp-validation-for="Sold" class="text-danger"></span>
         </div>
 
         <div class="form-group">

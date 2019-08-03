@@ -80,12 +80,11 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
                 return NotFound();
             }
 
-            var cloth = await _context.Clothes.SingleOrDefaultAsync(m => m.Id == id);
+            var cloth = await _context.Clothes.Include(a=>a.Agreement).SingleOrDefaultAsync(m => m.Id == id);
             if (cloth == null)
             {
                 return NotFound();
             }
-            ViewData["Agreement_Id"] = new SelectList(_context.Agreements, "Id", "Name", cloth.Agreement_Id);
             return View(cloth);
         }
 

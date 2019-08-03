@@ -277,7 +277,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             {
                 return NotFound();
             }
-            var cloth = await _context.Clothes.Where(m => m.Agreement_Id == id).ToListAsync();
+            var cloth = await _context.Clothes.Where(m => m.Agreement_Id == id).ToListAsync(); //i think can be changed at include
             var agreement = await _context.Agreements.Where(a => a.Id == id).ToListAsync();
             return View(cloth);
         }
@@ -288,10 +288,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             {
                 return NotFound();
             }
-            var agreement = await _context.Agreements.SingleOrDefaultAsync(m => m.Id == id);
-
-            var clotes = await _context.Clothes.Where(c => c.Agreement_Id == id).ToListAsync();
-
+            var agreement = _context.Agreements.Include(a => a.Clothes).SingleOrDefault(m => m.Id == id);            
             return View(agreement);
         }
 
