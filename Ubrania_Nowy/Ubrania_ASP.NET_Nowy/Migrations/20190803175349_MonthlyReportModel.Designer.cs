@@ -11,8 +11,8 @@ using Ubrania_ASP.NET_Nowy.Data;
 namespace Ubrania_ASP.NET_Nowy.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190729192831_standUP")]
-    partial class standUP
+    [Migration("20190803175349_MonthlyReportModel")]
+    partial class MonthlyReportModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

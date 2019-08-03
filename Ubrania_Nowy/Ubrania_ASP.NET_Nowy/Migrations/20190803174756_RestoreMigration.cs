@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Ubrania_ASP.NET_Nowy.Migrations
 {
-    public partial class standUP : Migration
+    public partial class RestoreMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
