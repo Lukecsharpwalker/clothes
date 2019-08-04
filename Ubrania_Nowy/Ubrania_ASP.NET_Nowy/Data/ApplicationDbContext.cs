@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Ubrania_ASP.NET_Nowy.Models;
+using Type = Ubrania_ASP.NET_Nowy.Models.Type;
 
 namespace Ubrania_ASP.NET_Nowy.Data
 {
@@ -18,7 +19,14 @@ namespace Ubrania_ASP.NET_Nowy.Data
         public DbSet<Agreement> Agreements { get; set; }
         public DbSet<Cloth> Clothes { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
-
+        public DbSet<DailyReport> DailyReports { get; set; }
+        public DbSet <MonthlyReport> MonthlyReports { get; set; }
+        public DbSet <AnnualReport> AnnualReports { get; set; }
+        public DbSet <NamesOfProperty> NamesOfProperties { get; set; }
+        public DbSet <Color> Colors { get; set; }
+        public DbSet <Mark> Marks { get; set; }
+        public DbSet <Size> Sizes { get; set; }
+        public DbSet <Type> Types { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

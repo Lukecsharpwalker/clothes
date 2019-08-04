@@ -48,6 +48,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         [Authorize(Roles = SD.AdminEndUser)]
         public async Task<IActionResult> Index()
         {
+            var lol = await _context.NamesOfProperties.Include(x=>x.Marks).ToListAsync();
             return View(await _context.Agreements.ToListAsync());
         }
 
@@ -374,6 +375,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
 
         private bool AgreementExists(int id)
         {
+            
             return _context.Agreements.Any(e => e.Id == id);
         }
 

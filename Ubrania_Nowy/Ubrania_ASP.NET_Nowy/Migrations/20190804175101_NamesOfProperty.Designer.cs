@@ -11,9 +11,10 @@ using Ubrania_ASP.NET_Nowy.Data;
 namespace Ubrania_ASP.NET_Nowy.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190804175101_NamesOfProperty")]
+    partial class NamesOfProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,20 +153,6 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
                     b.ToTable("Agreements");
                 });
 
-            modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.AnnualReport", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Balance");
-
-                    b.Property<DateTime>("Year");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AnnualReports");
-                });
-
             modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -228,19 +215,13 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
 
                     b.Property<int>("Agreement_Id");
 
-                    b.Property<int?>("AnnualReportId");
-
                     b.Property<string>("Box");
 
                     b.Property<string>("Colour");
 
-                    b.Property<int?>("DailyReportId");
-
                     b.Property<string>("Description");
 
                     b.Property<string>("Mark");
-
-                    b.Property<int?>("MonthlyReportId");
 
                     b.Property<int>("Price");
 
@@ -258,115 +239,7 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
 
                     b.HasIndex("Agreement_Id");
 
-                    b.HasIndex("AnnualReportId");
-
-                    b.HasIndex("DailyReportId");
-
-                    b.HasIndex("MonthlyReportId");
-
                     b.ToTable("Clothes");
-                });
-
-            modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Color", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("NameOf");
-
-                    b.Property<int?>("NamesOfPropertyId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NamesOfPropertyId");
-
-                    b.ToTable("Colors");
-                });
-
-            modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.DailyReport", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Balance");
-
-                    b.Property<DateTime>("Day");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DailyReports");
-                });
-
-            modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Mark", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("NameOf");
-
-                    b.Property<int?>("NamesOfPropertyId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NamesOfPropertyId");
-
-                    b.ToTable("Marks");
-                });
-
-            modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.MonthlyReport", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Balance");
-
-                    b.Property<DateTime>("Month");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MonthlyReports");
-                });
-
-            modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.NamesOfProperty", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("NamesOfProperties");
-                });
-
-            modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Size", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("NameOf");
-
-                    b.Property<int?>("NamesOfPropertyId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NamesOfPropertyId");
-
-                    b.ToTable("Sizes");
-                });
-
-            modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Type", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("NameOf");
-
-                    b.Property<int?>("NamesOfPropertyId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NamesOfPropertyId");
-
-                    b.ToTable("Types");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -420,46 +293,6 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
                         .WithMany("Clothes")
                         .HasForeignKey("Agreement_Id")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.AnnualReport")
-                        .WithMany("Clothes")
-                        .HasForeignKey("AnnualReportId");
-
-                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.DailyReport")
-                        .WithMany("Clothes")
-                        .HasForeignKey("DailyReportId");
-
-                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.MonthlyReport")
-                        .WithMany("Clothes")
-                        .HasForeignKey("MonthlyReportId");
-                });
-
-            modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Color", b =>
-                {
-                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.NamesOfProperty")
-                        .WithMany("Colors")
-                        .HasForeignKey("NamesOfPropertyId");
-                });
-
-            modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Mark", b =>
-                {
-                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.NamesOfProperty")
-                        .WithMany("Marks")
-                        .HasForeignKey("NamesOfPropertyId");
-                });
-
-            modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Size", b =>
-                {
-                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.NamesOfProperty")
-                        .WithMany("Sizes")
-                        .HasForeignKey("NamesOfPropertyId");
-                });
-
-            modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Type", b =>
-                {
-                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.NamesOfProperty")
-                        .WithMany("Types")
-                        .HasForeignKey("NamesOfPropertyId");
                 });
 #pragma warning restore 612, 618
         }
