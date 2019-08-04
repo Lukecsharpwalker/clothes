@@ -52,7 +52,6 @@ namespace Ubrania_ASP.NET_Nowy
         {
             if (env.IsDevelopment())
             {
-                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }

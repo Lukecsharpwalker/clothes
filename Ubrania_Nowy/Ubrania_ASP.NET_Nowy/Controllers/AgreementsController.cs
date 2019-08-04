@@ -48,7 +48,6 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         [Authorize(Roles = SD.AdminEndUser)]
         public async Task<IActionResult> Index()
         {
-            var lol = await _context.NamesOfProperties.Include(x=>x.Marks).ToListAsync();
             return View(await _context.Agreements.ToListAsync());
         }
 
