@@ -42,6 +42,34 @@ namespace Ubrania_ASP.NET_Nowy.Data
                 new Color {Id=8, NameOf = "Zielony" },
                 new Color {Id=9, NameOf = "Niebieski" }, 
                 new Color {Id=10, NameOf = "Fioletowy" });
+            builder.Entity<Mark>().HasData(
+                new Mark {Id =1, NameOf = "Zara" }, 
+                new Mark {Id=2, NameOf = "Hnm" }, 
+                new Mark {Id=3, NameOf = "Mohito" });
+            builder.Entity<Size>().HasData(
+                 new Size {Id=1,  NameOf = "xxs" }, 
+                 new Size {Id=2,  NameOf = "xs" },
+                 new Size {Id=3,  NameOf = "s" }, 
+                 new Size {Id=4,  NameOf = "m" }, 
+                 new Size {Id=5,  NameOf = "l" }, 
+                 new Size {Id=6,  NameOf = "xl" }, 
+                 new Size {Id=7,  NameOf = "xxl" }, 
+                 new Size {Id=8,  NameOf = "36" }, 
+                 new Size {Id=9,  NameOf = "37" }, 
+                 new Size {Id=10, NameOf = "38" }, 
+                 new Size {Id=11, NameOf = "39" }, 
+                 new Size {Id=12, NameOf = "40" }, 
+                 new Size {Id=13, NameOf = "41" });
+            builder.Entity<Type>().HasData(
+                new Type {Id = 1, NameOf = "Biżuteria" },
+                new Type {Id=2, NameOf = "Dodatki" },
+                new Type {Id=3, NameOf = "Torebki" }, 
+                new Type {Id=4, NameOf = "Spodnie" },
+                new Type {Id=5, NameOf = "Sukienki" }, 
+                new Type {Id=6, NameOf = "Spódnice" }, 
+                new Type {Id=7, NameOf = "Kurtki" }, 
+                new Type {Id=8, NameOf = "Bluzki" }, 
+                new Type {Id=9, NameOf = "Buty" });
 
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
