@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Ubrania_ASP.NET_Nowy.Data;
 
 namespace Ubrania_ASP.NET_Nowy.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190804203230_proteptiesWithValuesAndIneach")]
+    partial class proteptiesWithValuesAndIneach
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -291,7 +293,7 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
                         new { Id = 11, NameOf = "Czarny" },
                         new { Id = 1, NameOf = "Biały" },
                         new { Id = 2, NameOf = "Różowy" },
-                        new { Id = 3, NameOf = "Czerwony" },
+                        new { Id = 3, NameOf = "Czerwny" },
                         new { Id = 4, NameOf = "Pomarańczowy" },
                         new { Id = 5, NameOf = "Brązowy" },
                         new { Id = 6, NameOf = "Żółty" },
@@ -418,12 +420,12 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
                     b.HasData(
                         new { Id = 1, NameOf = "Biżuteria" },
                         new { Id = 2, NameOf = "Dodatki" },
-                        new { Id = 3, NameOf = "Torebka" },
+                        new { Id = 3, NameOf = "Torebki" },
                         new { Id = 4, NameOf = "Spodnie" },
-                        new { Id = 5, NameOf = "Sukienka" },
-                        new { Id = 6, NameOf = "Spódnica" },
-                        new { Id = 7, NameOf = "Kurtka" },
-                        new { Id = 8, NameOf = "Bluzka" },
+                        new { Id = 5, NameOf = "Sukienki" },
+                        new { Id = 6, NameOf = "Spódnice" },
+                        new { Id = 7, NameOf = "Kurtki" },
+                        new { Id = 8, NameOf = "Bluzki" },
                         new { Id = 9, NameOf = "Buty" }
                     );
                 });

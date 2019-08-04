@@ -9,10 +9,10 @@ namespace Ubrania_ASP.NET_Nowy.Models
     public class NamesOfProperty 
     {
         public int Id { get; set; }
-        public List<Mark> Marks { get; set; } = new List<Mark>() {  };       
-        public List<Size> Sizes { get; set; } = new List<Size> { };
-        public List<Color> Colors { get; set; } = new List<Color> { };
-        public List<Type> Types { get; set; } = new List<Type> { };
+        public List<Mark> Marks { get; set; }       
+        public List<Size> Sizes { get; set; } 
+        public List<Color> Colors { get; set; } 
+        public List<Type> Types { get; set; } 
 
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Ubrania_ASP.NET_Nowy.Data;
 
 namespace Ubrania_ASP.NET_Nowy.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190804205101_proteptiesWithValuesAndIneachLISTTTTTTTTTTT")]
+    partial class proteptiesWithValuesAndIneachLISTTTTTTTTTTT
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -286,20 +288,6 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
                     b.HasIndex("NamesOfPropertyId");
 
                     b.ToTable("Colors");
-
-                    b.HasData(
-                        new { Id = 11, NameOf = "Czarny" },
-                        new { Id = 1, NameOf = "Biały" },
-                        new { Id = 2, NameOf = "Różowy" },
-                        new { Id = 3, NameOf = "Czerwony" },
-                        new { Id = 4, NameOf = "Pomarańczowy" },
-                        new { Id = 5, NameOf = "Brązowy" },
-                        new { Id = 6, NameOf = "Żółty" },
-                        new { Id = 7, NameOf = "Szary" },
-                        new { Id = 8, NameOf = "Zielony" },
-                        new { Id = 9, NameOf = "Niebieski" },
-                        new { Id = 10, NameOf = "Fioletowy" }
-                    );
                 });
 
             modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.DailyReport", b =>
