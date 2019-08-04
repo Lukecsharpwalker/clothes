@@ -43,35 +43,38 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Mark)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Size)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Colour)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price_RL)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sold)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Agreement.Id)
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mark)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Colour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price_RL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sold)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Agreement.Id)
+                </td>
+                <td>
+                    @Html.Partial("_ClothAddButtonsPartial", item.Id)
+                </td>
+            </tr>
             }
         </tbody>
     </table>
