@@ -3,12 +3,25 @@
 @{
     ViewData["Title"] = "Index";
 }
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+
 <br />
 <h2>Lista Umów</h2>
 <br />
 <p>
     @Html.Partial("_CreateButtonPartial")
 </p>
+<input class="form-control" id="myInput" type="search" name="myInput" placeholder="Wyszukaj..." style="width:auto">
+<br>
 <div class="form-border">
     <table class="table">
         <thead>
@@ -37,7 +50,7 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="myTable">
             @foreach (var item in Model)
             {
                 <tr>
@@ -63,7 +76,7 @@
                         @Html.DisplayFor(modelItem => item.End)
                     </td>
                     <td>
-                        @Html.Partial("_TableButtonPartial",item.Id)
+                        @Html.Partial("_TableButtonPartial", item.Id)
 
                     </td>
                 </tr>
@@ -71,3 +84,14 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

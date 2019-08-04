@@ -3,6 +3,17 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
 
 <br />
 <h2>Lista Ubrań</h2>
@@ -11,89 +22,108 @@
 <p>
     @Html.Partial("_CreateButtonPartial")
 </p>
+<input class="form-control" id="myInput" type="search" name="myInput" placeholder="Wyszukaj..." style="width:auto">
+<br>
 <div class="form-border" style="width: fit-content">
     <table class="table">
-        <thead>
+        <thead class="table-borderless">
             <tr>
-                <th>
-                    ID
+                <th style="border-bottom:0px">
+                    Nr Ubrania
                 </th>
-                <th>
+                <th style="border-bottom:0px">
+                    Nr Umowy
+                </th>
+                <th style="border-bottom:0px">
                     Imię Właściciela
                 </th>
-                <th>
+                <th style="border-bottom:0px">
                     Nazwisko Własciciela
                 </th>
-                <th>
+                <th style="border-bottom:0px">
                     Marka
                 </th>
-                <th>
+                <th style="border-bottom:0px">
                     Rozmiar
                 </th>
-                <th>
+                <th style="border-bottom:0px">
                     Kolor
                 </th>
-                <th>
+                <th style="border-bottom:0px">
                     Typ
                 </th>
-                <th>
+                <th style="border-bottom:0px">
                     Opis
                 </th>
-                <th>
+                <th style="border-bottom:0px">
                     Cena
                 </th>
-                <th>
+                <th style="border-bottom:0px">
                     Cena Sprzedaży
                 </th>
-                <th>
+                <th style="border-bottom:0px">
                     Sprzedane?
                 </th>
-                <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="myTable">
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @item.Agreement.Id
-                </td>
-                <td>
-                    @item.Agreement.Name
-                </td>
-                <td>
-                    @item.Agreement.Surname
-                </td>
-                <td>
-                    @item.Mark
-                </td>
-                <td>
-                    @item.Size
-                </td>
-                <td>
-                    @item.Colour
-                </td>
-                <td>
-                    @item.Type
-                </td>
-                <td>
-                    @item.Description
-                </td>
-                <td>
-                    @item.Price
-                </td>
-                <td>
-                    @item.Price_RL
-                </td>
-                <td>
-                    @item.Sold
-                </td>
-                <td>
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.Agreement.Id
+                    </td>
+                    <td>
+                        @item.Agreement.Name
+                    </td>
+                    <td>
+                        @item.Agreement.Surname
+                    </td>
+                    <td>
+                        @item.Mark
+                    </td>
+                    <td>
+                        @item.Size
+                    </td>
+                    <td>
+                        @item.Colour
+                    </td>
+                    <td>
+                        @item.Type
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                    <td>
+                        @item.Price_RL
+                    </td>
+                    <td>
+                        @item.Sold
+                    </td>
+                    <td>
 
-                    @Html.Partial("_ClothAddButtonsPartial", item.Id)
-                </td>
-            </tr>
+                        @Html.Partial("_ClothAddButtonsPartial", item.Id)
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
-    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

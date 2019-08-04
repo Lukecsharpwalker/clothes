@@ -153,6 +153,15 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> ReturnCloth(int id)
+        {
+            var cloth = await _context.Clothes.SingleOrDefaultAsync(m => m.Id == id);
+            cloth.Sold = false;
+            _context.Update(cloth);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+        }
 
         private bool ClothExists(int id)
         {

@@ -34,23 +34,23 @@
     }
 }
 
-.form-border{
-    border:1px solid #bbb9b9;
-    border-radius:5px;
-    padding-top:30px;
-    padding-bottom:10px;
-    padding-right:10px;
-    padding-left:10px;
+.form-border {
+    border: 1px solid #bbb9b9;
+    border-radius: 5px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
-.custom-label{
-    display:block;
-    width:100%;
-    height:34px;
-    padding:6px 12px;
-    font-size:14px;
-    line-height:1.4285;
-    color:#555;
+.custom-label {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.4285;
+    color: #555;
 }
 
 .agreement-center {
@@ -58,10 +58,19 @@
     position: absolute;
     left: 50%;
     margin-right: -50%;
-    padding-top:15px;
+    padding-top: 15px;
     /* margin-bottom: 10px; */
     transform: translate(-50%, -50%);
 }
-.agreement-txt{
-    padding-top:13px;
+
+.agreement-txt {
+    padding-top: 13px;
 }
+
+#myInput {
+}
+
+    #myInput::-webkit-search-cancel-button {
+        position: relative;
+        right: 20px;
+    }
