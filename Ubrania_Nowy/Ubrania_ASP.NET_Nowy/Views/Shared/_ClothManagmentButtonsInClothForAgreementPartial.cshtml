@@ -1,0 +1,12 @@
+﻿@model  int
+
+    <td style="width:150px;">
+        <div class="btn-group" role="group">            
+            <a type="button" class="btn btn-danger" href="@Url.Action("DeleteCloth/"+Model)">
+                <i class="far fa-trash-alt"></i>
+            </a>
+            <a type="button" class="btn btn-danger" href="@Url.Action("ReturnCloth/"+Model)">
+                <i class="fas fa-undo"></i>
+            </a>
+        </div>
+    </td>

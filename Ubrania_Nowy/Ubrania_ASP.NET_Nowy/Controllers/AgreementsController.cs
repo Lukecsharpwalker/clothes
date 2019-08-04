@@ -292,6 +292,9 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             return View(agreement);
         }
 
+        [Authorize(Roles = SD.AdminEndUser)]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateTicket(int? id, TicketViewModel ticketViewModel)
         {
             var clothes = await _context.Clothes.Where(c => c.Agreement_Id == id).ToListAsync();
@@ -346,6 +349,25 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             var cloth = await _context.Clothes.Where(m => m.Agreement_Id.ToString() == id).ToListAsync();
 
             return View(cloth);
+        }
+
+        [Authorize(Roles = SD.AdminEndUser)]                
+        public async Task<IActionResult> ReturnCloth(int id)
+        {
+            var cloth = await _context.Clothes.Include(a=>a.Agreement).SingleOrDefaultAsync(m => m.Id == id);
+            cloth.Sold = false;
+            _context.Update(cloth);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("AgreementClothes", new { id = cloth.Agreement_Id });
+
+        }
+        [Authorize(Roles = SD.AdminEndUser)]        
+        public async Task<IActionResult> DeleteCloth(int id)
+        {
+            var cloth = await _context.Clothes.Include(a=>a.Agreement).SingleOrDefaultAsync(m => m.Id == id);
+            _context.Clothes.Remove(cloth);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("AgreementClothes", new { id = cloth.Agreement_Id });
         }
 
 
