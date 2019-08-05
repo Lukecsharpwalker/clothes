@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Ubrania_ASP.NET_Nowy.Models.NamesOfProperty>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+
+<div class="form-border" style="width: fit-content">
+    <table class="table">
+        <thead class="table-borderless">
+            <tr>
+                <th style="border-bottom:0px">
+                    Kolor
+                </th>
+                <th style="border-bottom:0px">
+                    Rozmiar
+                </th>
+                <th style="border-bottom:0px">
+                    Typ
+                </th>
+        </thead>
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @foreach (var x in item.Colors)
+                    {
+                        <td>@x.NameOf</td>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var x in item.Sizes)
+                    {
+                        <td>@x.NameOf</td>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var x in item.Types)
+                    {
+                        <td>@x.NameOf</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
