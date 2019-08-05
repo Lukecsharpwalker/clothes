@@ -51,7 +51,9 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         // GET: Clothes/Create
         public IActionResult Create()
         {
+            
             ViewData["Agreement_Id"] = new SelectList(_context.Agreements, "Id", "Name");
+            ViewData["Type"] = new SelectList(_context.Types, "Id", "NameOf");
             return View();
         }
 

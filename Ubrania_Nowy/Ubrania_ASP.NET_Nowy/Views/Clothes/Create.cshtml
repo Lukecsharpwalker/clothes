@@ -8,6 +8,7 @@
 <br />
 
 
+
 <form asp-action="Create">
 
     <div class="form-border">
@@ -19,7 +20,7 @@
                 <label class="control-label">Marka</label>
             </div>
             <div class="col-4">
-                <input asp-for="Mark" class="form-control" />
+                <input asp-for="Mark" class="form-control" />                
             </div>
             <span asp-validation-for="Mark" class="text-danger"></span>
         </div>
@@ -51,7 +52,7 @@
                 <label class="control-label">Typ</label>
             </div>
             <div class="col-4">
-                <input asp-for="Type" class="form-control" />
+                <select asp-for="Type" class="form-control" asp-items="ViewBag.Type"></select>
             </div>
             <span asp-validation-for="Type" class="text-danger"></span>
         </div>
