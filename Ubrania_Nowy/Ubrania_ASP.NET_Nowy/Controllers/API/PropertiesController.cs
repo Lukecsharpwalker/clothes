@@ -25,10 +25,25 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         [HttpGet]
         public IActionResult Get(string type, string query = null)
         {
-            if(type.Equals("Colour") && query!=null)
+           if(type.Equals("colour") && query!=null)
             {
                 var colourQuery = _context.Colors.Where(c => c.NameOf.ToLower().Contains(query.ToLower()));
                 return Ok(colourQuery.ToList());
+            }
+            if (type.Equals("type") && query != null)
+            {
+                var typeQuery = _context.Types.Where(c => c.NameOf.ToLower().Contains(query.ToLower()));
+                return Ok(typeQuery.ToList());
+            }
+            if (type.Equals("mark") && query != null)
+            {
+                var markQuery = _context.Marks.Where(c => c.NameOf.ToLower().Contains(query.ToLower()));
+                return Ok(markQuery.ToList());
+            }
+            if (type.Equals("size") && query != null)
+            {
+                var sizeQuery = _context.Sizes.Where(c => c.NameOf.ToLower().Contains(query.ToLower()));
+                return Ok(sizeQuery.ToList());
             }
             return Ok();
 

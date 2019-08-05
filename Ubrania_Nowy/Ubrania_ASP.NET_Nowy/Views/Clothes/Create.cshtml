@@ -42,7 +42,7 @@
                 <label class="control-label">Kolor</label>
             </div>
             <div class="col-4">
-                <input asp-for="Colour" class="form-control" />
+                <input asp-for="Colour" class="form-control" id="colour"/>
             </div>
             <span asp-validation-for="Colour" class="text-danger"></span>
         </div>
@@ -100,19 +100,18 @@
     <script>
         $(document).ready(function () {
 
-            var colorSrc = new Bloodhound({
+            var colourSrc = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
                 remote: {
-                    url: '../data/films/queries/%QUERY.json',
+                    url: '/API/Properties?type=colour&query=%QUERY',
                     wildcard: '%QUERY'
                 }
             });
 
-            $('#remote .typeahead').typeahead(null, {
-                name: 'best-pictures',
-                display: 'value',
-                source: bestPictures
+            $('#colour').typeahead(null, {
+                display: 'nameOf',
+                source: colourSrc
             });
         })
     </script>
