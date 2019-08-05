@@ -10,8 +10,8 @@ using Ubrania_ASP.NET_Nowy.Data;
 namespace Ubrania_ASP.NET_Nowy.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190804201900_colorsFilled")]
-    partial class colorsFilled
+    [Migration("20190805113522_new2")]
+    partial class new2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -281,26 +281,26 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
 
                     b.Property<string>("NameOf");
 
-                    b.Property<int?>("NamesOfPropertyId");
+                    b.Property<int>("PropertyId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NamesOfPropertyId");
+                    b.HasIndex("PropertyId");
 
                     b.ToTable("Colors");
 
                     b.HasData(
-                        new { Id = 11, NameOf = "Czarny" },
-                        new { Id = 1, NameOf = "Biały" },
-                        new { Id = 2, NameOf = "Różowy" },
-                        new { Id = 3, NameOf = "Czerwny" },
-                        new { Id = 4, NameOf = "Pomarańczowy" },
-                        new { Id = 5, NameOf = "Brązowy" },
-                        new { Id = 6, NameOf = "Żółty" },
-                        new { Id = 7, NameOf = "Szary" },
-                        new { Id = 8, NameOf = "Zielony" },
-                        new { Id = 9, NameOf = "Niebieski" },
-                        new { Id = 10, NameOf = "Fioletowy" }
+                        new { Id = 11, NameOf = "Czarny", PropertyId = 1 },
+                        new { Id = 1, NameOf = "Biały", PropertyId = 1 },
+                        new { Id = 2, NameOf = "Różowy", PropertyId = 1 },
+                        new { Id = 3, NameOf = "Czerwony", PropertyId = 1 },
+                        new { Id = 4, NameOf = "Pomarańczowy", PropertyId = 1 },
+                        new { Id = 5, NameOf = "Brązowy", PropertyId = 1 },
+                        new { Id = 6, NameOf = "Żółty", PropertyId = 1 },
+                        new { Id = 7, NameOf = "Szary", PropertyId = 1 },
+                        new { Id = 8, NameOf = "Zielony", PropertyId = 1 },
+                        new { Id = 9, NameOf = "Niebieski", PropertyId = 1 },
+                        new { Id = 10, NameOf = "Fioletowy", PropertyId = 1 }
                     );
                 });
 
@@ -327,13 +327,19 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
 
                     b.Property<string>("NameOf");
 
-                    b.Property<int?>("NamesOfPropertyId");
+                    b.Property<int>("PropertyId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NamesOfPropertyId");
+                    b.HasIndex("PropertyId");
 
                     b.ToTable("Marks");
+
+                    b.HasData(
+                        new { Id = 1, NameOf = "Zara", PropertyId = 1 },
+                        new { Id = 2, NameOf = "Hnm", PropertyId = 1 },
+                        new { Id = 3, NameOf = "Mohito", PropertyId = 1 }
+                    );
                 });
 
             modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.MonthlyReport", b =>
@@ -357,9 +363,17 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("ClothId");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("ClothId");
+
                     b.ToTable("NamesOfProperties");
+
+                    b.HasData(
+                        new { Id = 1 }
+                    );
                 });
 
             modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Size", b =>
@@ -370,13 +384,29 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
 
                     b.Property<string>("NameOf");
 
-                    b.Property<int?>("NamesOfPropertyId");
+                    b.Property<int>("PropertyId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NamesOfPropertyId");
+                    b.HasIndex("PropertyId");
 
                     b.ToTable("Sizes");
+
+                    b.HasData(
+                        new { Id = 1, NameOf = "xxs", PropertyId = 1 },
+                        new { Id = 2, NameOf = "xs", PropertyId = 1 },
+                        new { Id = 3, NameOf = "s", PropertyId = 1 },
+                        new { Id = 4, NameOf = "m", PropertyId = 1 },
+                        new { Id = 5, NameOf = "l", PropertyId = 1 },
+                        new { Id = 6, NameOf = "xl", PropertyId = 1 },
+                        new { Id = 7, NameOf = "xxl", PropertyId = 1 },
+                        new { Id = 8, NameOf = "36", PropertyId = 1 },
+                        new { Id = 9, NameOf = "37", PropertyId = 1 },
+                        new { Id = 10, NameOf = "38", PropertyId = 1 },
+                        new { Id = 11, NameOf = "39", PropertyId = 1 },
+                        new { Id = 12, NameOf = "40", PropertyId = 1 },
+                        new { Id = 13, NameOf = "41", PropertyId = 1 }
+                    );
                 });
 
             modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Type", b =>
@@ -387,13 +417,25 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
 
                     b.Property<string>("NameOf");
 
-                    b.Property<int?>("NamesOfPropertyId");
+                    b.Property<int>("PropertyId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NamesOfPropertyId");
+                    b.HasIndex("PropertyId");
 
                     b.ToTable("Types");
+
+                    b.HasData(
+                        new { Id = 1, NameOf = "Biżuteria", PropertyId = 1 },
+                        new { Id = 2, NameOf = "Dodatki", PropertyId = 1 },
+                        new { Id = 3, NameOf = "Torebka", PropertyId = 1 },
+                        new { Id = 4, NameOf = "Spodnie", PropertyId = 1 },
+                        new { Id = 5, NameOf = "Sukienka", PropertyId = 1 },
+                        new { Id = 6, NameOf = "Spódnica", PropertyId = 1 },
+                        new { Id = 7, NameOf = "Kurtka", PropertyId = 1 },
+                        new { Id = 8, NameOf = "Bluzka", PropertyId = 1 },
+                        new { Id = 9, NameOf = "Buty", PropertyId = 1 }
+                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -463,30 +505,41 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
 
             modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Color", b =>
                 {
-                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.NamesOfProperty")
+                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.NamesOfProperty", "NamesOfProperty")
                         .WithMany("Colors")
-                        .HasForeignKey("NamesOfPropertyId");
+                        .HasForeignKey("PropertyId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Mark", b =>
                 {
-                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.NamesOfProperty")
+                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.NamesOfProperty", "NamesOfProperty")
                         .WithMany("Marks")
-                        .HasForeignKey("NamesOfPropertyId");
+                        .HasForeignKey("PropertyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.NamesOfProperty", b =>
+                {
+                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.Cloth")
+                        .WithMany("NamesOfPropertyz")
+                        .HasForeignKey("ClothId");
                 });
 
             modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Size", b =>
                 {
-                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.NamesOfProperty")
+                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.NamesOfProperty", "NamesOfProperty")
                         .WithMany("Sizes")
-                        .HasForeignKey("NamesOfPropertyId");
+                        .HasForeignKey("PropertyId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Type", b =>
                 {
-                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.NamesOfProperty")
+                    b.HasOne("Ubrania_ASP.NET_Nowy.Models.NamesOfProperty", "NamesOfProperty")
                         .WithMany("Types")
-                        .HasForeignKey("NamesOfPropertyId");
+                        .HasForeignKey("PropertyId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

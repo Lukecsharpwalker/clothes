@@ -20,7 +20,7 @@
                 <label class="control-label">Marka</label>
             </div>
             <div class="col-4">
-                <input asp-for="Mark" class="form-control" />                
+                <input asp-for="Mark" class="form-control" />
             </div>
             <span asp-validation-for="Mark" class="text-danger"></span>
         </div>
@@ -79,7 +79,7 @@
 
         <div class="form-group row">
             <div class="col-2">
-                <label  class="control-label">Numer Umowy</label>
+                <label class="control-label">Numer Umowy</label>
             </div>
             <div class="col-4">
                 <select asp-for="Agreement_Id" class="form-control" asp-items="ViewBag.Agreement_Id"></select>
@@ -96,5 +96,25 @@
 </form>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/typeahead.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var colorSrc = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '../data/films/queries/%QUERY.json',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#remote .typeahead').typeahead(null, {
+                name: 'best-pictures',
+                display: 'value',
+                source: bestPictures
+            });
+        })
+    </script>
 }
 

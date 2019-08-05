@@ -23,7 +23,7 @@ namespace Ubrania_ASP.NET_Nowy.Data
         public DbSet<MonthlyReport> MonthlyReports { get; set; }
         public DbSet<AnnualReport> AnnualReports { get; set; }
         public DbSet<NamesOfProperty> NamesOfProperties { get; set; }
-        public DbSet<Color> Colors { get; set; }
+        public DbSet<Colour> Colors { get; set; }
         public DbSet<Mark> Marks { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Type> Types { get; set; }
@@ -32,18 +32,18 @@ namespace Ubrania_ASP.NET_Nowy.Data
             base.OnModelCreating(builder);
             builder.Entity<NamesOfProperty>().HasData(
                 new NamesOfProperty { Id = 1 });
-            builder.Entity<Color>().HasData(
-                new Color { PropertyId = 1, Id = 11, NameOf = "Czarny" },
-                new Color { PropertyId = 1, Id = 1, NameOf = "Biały" },
-                new Color { PropertyId = 1, Id = 2, NameOf = "Różowy" },
-                new Color { PropertyId = 1, Id = 3, NameOf = "Czerwony" },
-                new Color { PropertyId = 1, Id = 4, NameOf = "Pomarańczowy" },
-                new Color { PropertyId = 1, Id = 5, NameOf = "Brązowy" },
-                new Color { PropertyId = 1, Id = 6, NameOf = "Żółty" },
-                new Color { PropertyId = 1, Id = 7, NameOf = "Szary" },
-                new Color { PropertyId = 1, Id = 8, NameOf = "Zielony" },
-                new Color { PropertyId = 1, Id = 9, NameOf = "Niebieski" },
-                new Color { PropertyId = 1, Id = 10, NameOf = "Fioletowy" });
+            builder.Entity<Colour>().HasData(
+                new Colour { PropertyId = 1, Id = 11, NameOf = "Czarny" },
+                new Colour { PropertyId = 1, Id = 1, NameOf = "Biały" },
+                new Colour { PropertyId = 1, Id = 2, NameOf = "Różowy" },
+                new Colour { PropertyId = 1, Id = 3, NameOf = "Czerwony" },
+                new Colour { PropertyId = 1, Id = 4, NameOf = "Pomarańczowy" },
+                new Colour { PropertyId = 1, Id = 5, NameOf = "Brązowy" },
+                new Colour { PropertyId = 1, Id = 6, NameOf = "Żółty" },
+                new Colour { PropertyId = 1, Id = 7, NameOf = "Szary" },
+                new Colour { PropertyId = 1, Id = 8, NameOf = "Zielony" },
+                new Colour { PropertyId = 1, Id = 9, NameOf = "Niebieski" },
+                new Colour { PropertyId = 1, Id = 10, NameOf = "Fioletowy" });
             builder.Entity<Mark>().HasData(
                 new Mark { PropertyId = 1, Id = 1, NameOf = "Zara" },
                 new Mark { PropertyId = 1, Id = 2, NameOf = "Hnm" },

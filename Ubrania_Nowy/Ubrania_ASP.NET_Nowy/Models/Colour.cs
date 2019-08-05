@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Ubrania_ASP.NET_Nowy.Models
 {
-    public class Color
+    public class Colour
     {
         public int Id { get; set; }
         public int PropertyId { get; set; }

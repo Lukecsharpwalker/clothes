@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
 
 namespace Ubrania_ASP.NET_Nowy.Migrations
 {
-    public partial class NamesOfProperty : Migration
+    public partial class NamesofpropertyKeysWIthProperties3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

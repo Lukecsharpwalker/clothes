@@ -11,7 +11,7 @@ namespace Ubrania_ASP.NET_Nowy.Models
         public int Id { get; set; }
         public IList<Mark> Marks { get; set; }       
         public IList<Size> Sizes { get; set; } 
-        public IList<Color> Colors { get; set; } 
+        public IList<Colour> Colors { get; set; } 
         public IList<Type> Types { get; set; } 
 
     }
