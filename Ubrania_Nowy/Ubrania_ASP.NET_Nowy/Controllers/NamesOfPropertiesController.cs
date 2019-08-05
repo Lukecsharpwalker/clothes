@@ -22,45 +22,34 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         // GET: NamesOfProperties
         public async Task<IActionResult> Index()
         {
-            return View(await _context.NamesOfProperties.Include(x=>x.Colors).Include(x=>x.Types).Include(x=>x.Sizes).ToListAsync());
+            return View(await _context.NamesOfProperties.Include(x=>x.Colors).Include(x=>x.Marks).Include(x=>x.Sizes).ToListAsync());
         }
-
-        // GET: NamesOfProperties/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var namesOfProperty = await _context.NamesOfProperties
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (namesOfProperty == null)
-            {
-                return NotFound();
-            }
-
-            return View(namesOfProperty);
-        }
-
-        // GET: NamesOfProperties/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: NamesOfProperties/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+                
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] NamesOfProperty namesOfProperty)
+        public async Task<IActionResult> Create(NamesOfProperty namesOfProperty,string typeOfProperty)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(namesOfProperty);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                switch(typeOfProperty)
+                {
+                    case "colour":
+                        _context.Add(namesOfProperty.Colors);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    case "type":
+                        _context.Add(namesOfProperty.Types);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    case "size":
+                        _context.Add(namesOfProperty.Sizes);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    default:
+                        return RedirectToAction(nameof(Index));
+
+                }
             }
             return View(namesOfProperty);
         }

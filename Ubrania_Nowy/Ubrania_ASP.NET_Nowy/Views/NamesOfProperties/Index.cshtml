@@ -2,45 +2,49 @@
 
 @{
     ViewData["Title"] = "Index";
+
 }
 <br />
-
-<div class="form-border" style="width: fit-content">
-    <table class="table">
-        <thead class="table-borderless">
-            <tr>
-                <th style="border-bottom:0px">
-                    Kolor
-                </th>
-                <th style="border-bottom:0px">
-                    Rozmiar
-                </th>
-                <th style="border-bottom:0px">
-                    Typ
-                </th>
-        </thead>
-        <tbody id="myTable">
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-4" style="border-right-style:double; border-left-style:double">
+            <h2>KOLORY</h2>
+            <br />
             @foreach (var item in Model)
             {
-                <tr>
-                    @foreach (var x in item.Colors)
-                    {
-                        <td>@x.NameOf</td>
-                    }
-                </tr>
-                <tr>
-                    @foreach (var x in item.Sizes)
-                    {
-                        <td>@x.NameOf</td>
-                    }
-                </tr>
-                <tr>
-                    @foreach (var x in item.Types)
-                    {
-                        <td>@x.NameOf</td>
-                    }
-                </tr>
+                @foreach (var x in item.Colors)
+                {
+                    @x.NameOf
+                    <br />
+                }
             }
-        </tbody>
-    </table>
-</div>
+        </div>
+
+        <div class="col-4" style="border-right-style:double">
+            <h2>ROZMIARY</h2>
+            <br />
+            @foreach (var item in Model)
+            {
+                @foreach (var x in item.Sizes)
+                {
+                    @x.NameOf
+                    <br />
+                }
+            }
+        </div>
+
+        <div class="col-4" style="border-right-style:double">
+            <h2>MARKI</h2>
+            <br />
+            @foreach (var item in Model)
+            {
+                @foreach (var x in item.Marks)
+                {
+                    @x.NameOf
+                    <br />
+                }
+
+            }
+        </div>
+    </div>
+    </form>
