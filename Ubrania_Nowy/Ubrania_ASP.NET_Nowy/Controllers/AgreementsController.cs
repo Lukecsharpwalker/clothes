@@ -288,7 +288,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             {
                 return NotFound();
             }
-            var agreement = _context.Agreements.Include(a => a.Clothes).SingleOrDefault(m => m.Id == id);            
+            var agreement = _context.Agreements.Include(a => a.Clothes).SingleOrDefault(m => m.Id == id);
             return View(agreement);
         }
 
@@ -298,16 +298,16 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         public async Task<IActionResult> CreateTicket(int? id, TicketViewModel ticketViewModel)
         {
             var clothes = await _context.Clothes.Where(c => c.Agreement_Id == id).ToListAsync();
-            
+
             foreach (Cloth cloth in clothes)
             {
                 cloth.Type = cloth.Type ?? "";
                 cloth.Description = cloth.Description ?? "";
                 cloth.Mark = cloth.Mark ?? "";
-                cloth.Size = cloth.Size ?? "";               
+                cloth.Size = cloth.Size ?? "";
 
 
-                var barcode1 = new Barcode(cloth.Id.ToString(), NetBarcode.Type.Code128, true);              
+                var barcode1 = new Barcode(cloth.Id.ToString(), NetBarcode.Type.Code128, true);
                 ticketViewModel.Barcodes.Add(barcode1.GetBase64Image());
 
                 Bitmap bitMapImage = new
@@ -316,11 +316,11 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
                 graphicImage.SmoothingMode = SmoothingMode.AntiAlias;
                 graphicImage.DrawString(cloth.Price.ToString() + "zł",
                 new Font("Arial", 30, FontStyle.Italic),
-                SystemBrushes.WindowText, new Point(35, 115));                
+                SystemBrushes.WindowText, new Point(35, 115));
                 graphicImage.DrawString(
-                    cloth.Type+ " " +
-                    cloth.Mark+ " " +
-                    cloth.Description+ " " +
+                    cloth.Type + " " +
+                    cloth.Mark + " " +
+                    cloth.Description + " " +
                     cloth.Size,
                 new Font("Arial", 9, FontStyle.Italic),
                 SystemBrushes.WindowText, new Point(1, 205));
@@ -332,7 +332,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
                     ticketViewModel.Ticket.Add(stream.ToArray());
                 }
             }
-            
+
             return View(ticketViewModel);
         }
 
@@ -351,20 +351,20 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             return View(cloth);
         }
 
-        [Authorize(Roles = SD.AdminEndUser)]                
+        [Authorize(Roles = SD.AdminEndUser)]
         public async Task<IActionResult> ReturnCloth(int id)
         {
-            var cloth = await _context.Clothes.Include(a=>a.Agreement).SingleOrDefaultAsync(m => m.Id == id);
+            var cloth = await _context.Clothes.Include(a => a.Agreement).SingleOrDefaultAsync(m => m.Id == id);
             cloth.Sold = false;
             _context.Update(cloth);
             await _context.SaveChangesAsync();
             return RedirectToAction("AgreementClothes", new { id = cloth.Agreement_Id });
 
         }
-        [Authorize(Roles = SD.AdminEndUser)]        
+        [Authorize(Roles = SD.AdminEndUser)]
         public async Task<IActionResult> DeleteCloth(int id)
         {
-            var cloth = await _context.Clothes.Include(a=>a.Agreement).SingleOrDefaultAsync(m => m.Id == id);
+            var cloth = await _context.Clothes.Include(a => a.Agreement).SingleOrDefaultAsync(m => m.Id == id);
             _context.Clothes.Remove(cloth);
             await _context.SaveChangesAsync();
             return RedirectToAction("AgreementClothes", new { id = cloth.Agreement_Id });
@@ -374,7 +374,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
 
         private bool AgreementExists(int id)
         {
-            
+
             return _context.Agreements.Any(e => e.Id == id);
         }
 
