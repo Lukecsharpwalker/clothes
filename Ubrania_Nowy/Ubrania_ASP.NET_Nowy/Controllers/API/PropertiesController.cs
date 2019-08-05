@@ -25,27 +25,24 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         [HttpGet]
         public IActionResult Get(string type, string query = null)
         {
-           if(type.Equals("colour") && query!=null)
+            switch (type)
             {
-                var colourQuery = _context.Colors.Where(c => c.NameOf.ToLower().Contains(query.ToLower()));
-                return Ok(colourQuery.ToList());
+                case "colour":
+                    var colourQuery = _context.Colors.Where(c => c.NameOf.ToLower().Contains(query.ToLower()));
+                    return Ok(colourQuery.ToList());
+                case "type":
+                    var typeQuery = _context.Types.Where(c => c.NameOf.ToLower().Contains(query.ToLower()));
+                    return Ok(typeQuery.ToList());
+                case "mark":
+                    var markQuery = _context.Marks.Where(c => c.NameOf.ToLower().Contains(query.ToLower()));
+                    return Ok(markQuery.ToList());
+                case "size":
+                    var sizeQuery = _context.Sizes.Where(c => c.NameOf.ToLower().Contains(query.ToLower()));
+                    return Ok(sizeQuery.ToList());
+                default:
+                    return Ok();
+
             }
-            if (type.Equals("type") && query != null)
-            {
-                var typeQuery = _context.Types.Where(c => c.NameOf.ToLower().Contains(query.ToLower()));
-                return Ok(typeQuery.ToList());
-            }
-            if (type.Equals("mark") && query != null)
-            {
-                var markQuery = _context.Marks.Where(c => c.NameOf.ToLower().Contains(query.ToLower()));
-                return Ok(markQuery.ToList());
-            }
-            if (type.Equals("size") && query != null)
-            {
-                var sizeQuery = _context.Sizes.Where(c => c.NameOf.ToLower().Contains(query.ToLower()));
-                return Ok(sizeQuery.ToList());
-            }
-            return Ok();
 
         }
 

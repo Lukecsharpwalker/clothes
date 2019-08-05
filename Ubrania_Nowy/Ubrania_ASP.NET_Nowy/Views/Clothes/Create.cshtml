@@ -20,7 +20,7 @@
                 <label class="control-label">Marka</label>
             </div>
             <div class="col-4">
-                <input asp-for="Mark" class="form-control" />
+                <input asp-for="Mark" id="mark" class="form-control" />
             </div>
             <span asp-validation-for="Mark" class="text-danger"></span>
         </div>
@@ -31,7 +31,7 @@
                 <label class="control-label">Rozmiar</label>
             </div>
             <div class="col-4">
-                <input asp-for="Size" class="form-control" />
+                <input asp-for="Size" id="size" class="form-control" />
             </div>
             <span asp-validation-for="Size" class="text-danger"></span>
         </div>
@@ -110,6 +110,40 @@
             });
 
             $('#colour').typeahead(null, {
+                display: 'nameOf',
+                source: colourSrc
+            });
+        })
+
+         $(document).ready(function () {
+
+            var colourSrc = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/API/Properties?type=mark&query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#mark').typeahead(null, {
+                display: 'nameOf',
+                source: colourSrc
+            });
+         })
+
+         $(document).ready(function () {
+
+            var colourSrc = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/API/Properties?type=size&query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#size').typeahead(null, {
                 display: 'nameOf',
                 source: colourSrc
             });
