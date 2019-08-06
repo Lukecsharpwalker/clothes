@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using NetBarcode;
 using System.Drawing.Drawing2D;
 using Ubrania_ASP.NET_Nowy.Models.AgreementClothesCustomerViewModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Ubrania_ASP.NET_Nowy.Controllers
 {
@@ -386,6 +387,32 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             _context.Clothes.Remove(cloth);
             await _context.SaveChangesAsync();
             return RedirectToAction("AgreementClothes", new { id = cloth.Agreement_Id });
+        }
+
+        public IActionResult CreateClothPartial()
+        {
+
+            ViewData["Agreement_Id"] = new SelectList(_context.Agreements, "Id", "Name");
+            ViewData["Type"] = new SelectList(_context.Types, "Id", "NameOf");
+            return View();
+        }
+
+        // POST: Clothes/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateClothPartial(Cloth cloth)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(cloth);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("AgreementClothes/" + cloth.Agreement_Id);
+            }
+            ViewData["Agreement_Id"] = new SelectList(_context.Agreements, "Id", "Name", cloth.Agreement_Id);
+           return RedirectToAction("AgreementClothes",cloth.Agreement_Id);
         }
 
 
