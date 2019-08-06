@@ -18,7 +18,7 @@
                 <br />
             }
         }
-
+        <hr />
     </div>
 
     <div class="col-4" style="border-right-style:double">
@@ -32,7 +32,7 @@
                 <br />
             }
         }
-
+        <hr />
     </div>
 
     <div class="col-4" style="border-right-style:double">
@@ -47,8 +47,11 @@
             }
 
         }
-    </div>
+   <hr /> </div>
 </div>
-@await Html.PartialAsync("_CreateColour", new Colour())
-@await Html.PartialAsync("_CreateSize", new Size())
-@await Html.PartialAsync("_CreateMark", new Mark())
+
+<div class="row">
+    <div class="col-4" style="border-right-style:double; border-left-style:double"> @await Html.PartialAsync("_CreateColour", new Colour())</div>
+    <div class="col-4" style="border-right-style:double"> @await Html.PartialAsync("_CreateSize", new Size())</div> 
+    <div class="col-4" style="border-right-style:double">  @await Html.PartialAsync("_CreateMark", new Mark())</div>      
+    </div>
