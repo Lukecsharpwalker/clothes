@@ -2,18 +2,21 @@
 @{
     ViewData["Title"] = "AgreementClothes";
 }
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    </head>
 
 <h2>Spis Ubrań Umowy: </h2>
-
-<p>
-    @*@Html.Partial("_CreateButtonPartial_2")*@
-</p>
+<input class="form-control" id="myInput" type="search" name="myInput" placeholder="Wyszukaj..." style="width:auto">
 <div class="form-border">
     <table class="table">
         <thead>
             <tr>
                 <th>
-                   
+
                 </th>
                 <th>
                     Rozmiar
@@ -42,7 +45,7 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="myTable">
             @foreach (var item in Model.ClothList)
             {
                 <tr>
@@ -73,8 +76,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Agreement.Name)
                     </td>
-                    <td>
-                    </td>
+                    <td></td>
                 </tr>
             }
         </tbody>
@@ -82,6 +84,18 @@
     <a asp-action="Index" class="btn btn-success">Powrót</a>
 </div>
 <div page-model="@Model.PagingInfo" page-action="AgreementClothesCustomer" page-classes-enabled="true"
-     page-class="btn border"  page-class-normal="btn btn-default active"
+     page-class="btn border" page-class-normal="btn btn-default active"
      page-class-selected="btn btn-primary active" class="btn-group m-1"></div>
 <br />
+
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
