@@ -1,0 +1,14 @@
+﻿@model Colour
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateColour">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="NameOf" />
+                <input type="submit" value="Dodaj Kolor" class="btn btn-default" />
+
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,50 +1,54 @@
 ﻿@model IEnumerable<Ubrania_ASP.NET_Nowy.Models.NamesOfProperty>
-
+@using Ubrania_ASP.NET_Nowy.Models
 @{
     ViewData["Title"] = "Index";
 
 }
 <br />
-<form asp-action="Create">
-    <div class="row">
-        <div class="col-4" style="border-right-style:double; border-left-style:double">
-            <h2>KOLORY</h2>
-            <br />
-            @foreach (var item in Model)
-            {
-                @foreach (var x in item.Colors)
-                {
-                    @x.NameOf
-                    <br />
-                }
-            }
-        </div>
 
-        <div class="col-4" style="border-right-style:double">
-            <h2>ROZMIARY</h2>
-            <br />
-            @foreach (var item in Model)
+<div class="row">
+    <div class="col-4" style="border-right-style:double; border-left-style:double">
+        <h2>KOLORY</h2>
+        <br />
+        @foreach (var item in Model)
+        {
+            @foreach (var x in item.Colors)
             {
-                @foreach (var x in item.Sizes)
-                {
-                    @x.NameOf
-                    <br />
-                }
+                @x.NameOf
+                <br />
             }
-        </div>
+        }
 
-        <div class="col-4" style="border-right-style:double">
-            <h2>MARKI</h2>
-            <br />
-            @foreach (var item in Model)
-            {
-                @foreach (var x in item.Marks)
-                {
-                    @x.NameOf
-                    <br />
-                }
-
-            }
-        </div>
     </div>
-    </form>
+
+    <div class="col-4" style="border-right-style:double">
+        <h2>ROZMIARY</h2>
+        <br />
+        @foreach (var item in Model)
+        {
+            @foreach (var x in item.Sizes)
+            {
+                @x.NameOf
+                <br />
+            }
+        }
+
+    </div>
+
+    <div class="col-4" style="border-right-style:double">
+        <h2>MARKI</h2>
+        <br />
+        @foreach (var item in Model)
+        {
+            @foreach (var x in item.Marks)
+            {
+                @x.NameOf
+                <br />
+            }
+
+        }
+    </div>
+</div>
+@await Html.PartialAsync("_CreateColour", new Colour())
+@await Html.PartialAsync("_CreateSize", new Size())
+@await Html.PartialAsync("_CreateMark", new Mark())

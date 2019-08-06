@@ -24,34 +24,46 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         {
             return View(await _context.NamesOfProperties.Include(x=>x.Colors).Include(x=>x.Marks).Include(x=>x.Sizes).ToListAsync());
         }
-                
-       
+
+        public IActionResult Create()
+        {
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(NamesOfProperty namesOfProperty,string typeOfProperty)
+        public async Task<IActionResult> CreateColour(Colour colour)
         {
             if (ModelState.IsValid)
             {
-                switch(typeOfProperty)
-                {
-                    case "colour":
-                        _context.Add(namesOfProperty.Colors);
-                        await _context.SaveChangesAsync();
-                        return RedirectToAction(nameof(Index));
-                    case "type":
-                        _context.Add(namesOfProperty.Types);
-                        await _context.SaveChangesAsync();
-                        return RedirectToAction(nameof(Index));
-                    case "size":
-                        _context.Add(namesOfProperty.Sizes);
-                        await _context.SaveChangesAsync();
-                        return RedirectToAction(nameof(Index));
-                    default:
-                        return RedirectToAction(nameof(Index));
-
-                }
+                colour.PropertyId = 1;
+                _context.Add(colour);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));             
             }
-            return View(namesOfProperty);
+            return View(colour);
+        }
+        public async Task<IActionResult> CreateSize(Size size)
+        {
+            if (ModelState.IsValid)
+            {
+                size.PropertyId = 1;
+                _context.Add(size);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(size);
+        }
+
+        public async Task<IActionResult> CreateMark(Mark mark)
+        {
+            if (ModelState.IsValid)
+            {
+                mark.PropertyId = 1;
+                _context.Add(mark);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(mark);
         }
 
         // GET: NamesOfProperties/Edit/5
