@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Ubrania_ASP.NET_Nowy.Models.Cloth>
+﻿@model Ubrania_ASP.NET_Nowy.Models.AgreementClothesCustomerViewModel.AgreementClothesCustomerViewModel
 @{
     ViewData["Title"] = "AgreementClothes";
 }
@@ -13,37 +13,37 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Mark)
+                   
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Size)
+                    Rozmiar
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Colour)
+                    Kolor
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Type)
+                    Typ
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Description)
+                    Opis
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Price)
+                    Cena
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Price_RL)
+                    Cena rzeczywista
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Sold)
+                    Sprzedane?
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Agreement)
+                    Umowa
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.ClothList)
             {
                 <tr>
                     <td>
@@ -74,11 +74,6 @@
                         @Html.DisplayFor(modelItem => item.Agreement.Name)
                     </td>
                     <td>
-                        @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
-                        @*@Html.Partial("_ClothAddButtonsPartial", item.Id)*@
-
                     </td>
                 </tr>
             }
@@ -86,3 +81,7 @@
     </table>
     <a asp-action="Index" class="btn btn-success">Powrót</a>
 </div>
+<div page-model="@Model.PagingInfo" page-action="AgreementClothesCustomer" page-classes-enabled="true"
+     page-class="btn border"  page-class-normal="btn btn-default active"
+     page-class-selected="btn btn-primary active" class="btn-group m-1"></div>
+<br />

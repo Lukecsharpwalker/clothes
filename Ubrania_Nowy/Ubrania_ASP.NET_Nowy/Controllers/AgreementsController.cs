@@ -17,11 +17,13 @@ using System.Drawing;
 using System.Collections.Generic;
 using NetBarcode;
 using System.Drawing.Drawing2D;
+using Ubrania_ASP.NET_Nowy.Models.AgreementClothesCustomerViewModel;
 
 namespace Ubrania_ASP.NET_Nowy.Controllers
 {
     public class AgreementsController : Controller
     {
+        private int PageSize = 10;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
@@ -338,7 +340,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
 
 
 
-        public async Task<IActionResult> AgreementClothesCustomer()
+        public async Task<IActionResult> AgreementClothesCustomer(int productPage=1)
         {
             var id = HttpContext.User.Identity.Name;
 
@@ -346,9 +348,25 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             {
                 return NotFound();
             }
-            var cloth = await _context.Clothes.Where(m => m.Agreement_Id.ToString() == id).ToListAsync();
 
-            return View(cloth);
+            AgreementClothesCustomerViewModel ACCVW = new AgreementClothesCustomerViewModel()
+            {
+               ClothList = new List<Cloth>()
+        };
+            //  var cloth = await _context.Clothes.Where(m => m.Agreement_Id.ToString() == id).ToListAsync();
+            ACCVW.ClothList = await _context.Clothes.Where(m => m.Agreement_Id.ToString() == id).ToListAsync();
+            var count = ACCVW.ClothList.Count;
+            ACCVW.ClothList = ACCVW.ClothList.OrderBy(m => m.Id).Skip((productPage - 1) * PageSize).Take(PageSize).ToList();
+
+            ACCVW.PagingInfo = new PagingInfo
+            {
+                CurrentPage = productPage,
+                ItemsPerPage = PageSize,
+                TotalItem = count
+            };
+
+
+            return View(ACCVW);
         }
 
         [Authorize(Roles = SD.AdminEndUser)]
