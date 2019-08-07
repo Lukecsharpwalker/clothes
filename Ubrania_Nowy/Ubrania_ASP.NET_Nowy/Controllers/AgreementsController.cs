@@ -437,7 +437,16 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             return View(await _context.Agreements.Where(a => a.IsActive == false).ToListAsync());
         }
 
+        public async Task<IActionResult> BoxCloth(int id, string box)
+        {
+            var cloth = await _context.Clothes.SingleOrDefaultAsync(m => m.Id == id);
+            cloth.Box = box;
+            _context.Update(cloth);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("AgreementClothesClosed", new { id = cloth.Agreement_Id });
+          //  return RedirectToAction(nameof(Index));
 
+        }
 
         private bool AgreementExists(int id)
         {

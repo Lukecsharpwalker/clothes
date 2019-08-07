@@ -164,6 +164,8 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             return RedirectToAction(nameof(Index));
 
         }
+       
+
 
         private bool ClothExists(int id)
         {

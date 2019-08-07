@@ -48,6 +48,9 @@
                 {
                 <tr>
                     <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.Mark)
                     </td>
                     <td>
@@ -75,7 +78,7 @@
                         @Html.DisplayFor(modelItem => item.Agreement.Id)
                     </td>
                     <td>
-                        @Html.Partial("_ClothManagmentButtonsInClothForAgreementPartial", item.Id)
+                        @Html.Partial("_ClothManagmentButtonsInClothForAgreementPartial", new Cloth { Id = item.Id })
                     </td>
                 </tr>
                 }

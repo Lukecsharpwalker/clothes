@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -34,38 +35,39 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             {
 
                 foreach (var cloth in clothViewModel.ClothList)
-                {        
-                     cloth.Price_RL = (cloth.Price *(1- (0.01 * clothViewModel.Discount)));
-                        _context.Update(cloth);
-                                        
+                {
+                    cloth.Price_RL = (cloth.Price * (1 - (0.01 * clothViewModel.Discount)));
+                    cloth.SoldDate = DateTime.Now;
+                    _context.Update(cloth);
+
                 }
                 await _context.SaveChangesAsync();
                 return View("Index");
 
             }
 
-            if(clothViewModel.Back == "true")
+            if (clothViewModel.Back == "true")
             {
                 var priceSubstract = clothViewModel.ClothList.LastOrDefault().Price;
-                clothViewModel.ClothList.RemoveAt(clothViewModel.ClothList.Count -1);               
+                clothViewModel.ClothList.RemoveAt(clothViewModel.ClothList.Count - 1);
                 clothViewModel.PriceCounter -= priceSubstract;
                 clothViewModel.Back = "false";
                 return View("Index", clothViewModel);
-                
+
             }
 
 
             var SingleCloth = await _context.Clothes.Where(c => c.Id == clothViewModel.Id).SingleOrDefaultAsync();
             if (SingleCloth != null && !(clothViewModel.ClothList.Exists(x => x.Id == SingleCloth.Id)))
-            { 
-            clothViewModel.PriceCounter = SingleCloth.Price + clothViewModel.PriceCounter;
+            {
+                clothViewModel.PriceCounter = SingleCloth.Price + clothViewModel.PriceCounter;
 
-            clothViewModel.ClothList.Add(SingleCloth);
+                clothViewModel.ClothList.Add(SingleCloth);
 
-            SingleCloth.Sold = true;
+                SingleCloth.Sold = true;
 
-            
-            return View("Index", clothViewModel);
+
+                return View("Index", clothViewModel);
             }
             return View("Index", clothViewModel);
 
