@@ -120,8 +120,8 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
                 while(agreement.End.DayOfWeek.ToString() != "Thursday")
                 {
                     agreement.End = agreement.End.AddDays(1);
-                }              
-
+                }
+                agreement.IsActive = true;
                 _context.Add(agreement);
                 await _context.SaveChangesAsync();
 
