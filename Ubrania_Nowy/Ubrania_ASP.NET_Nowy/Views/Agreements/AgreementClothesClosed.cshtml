@@ -39,6 +39,7 @@
                 <th>
                     Karton
                 </th>
+                
             </tr>
         </thead>
         <tbody>
@@ -71,12 +72,19 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Agreement.Id)
+                </td>                
+                <td colspan="4">
+                    @*@if (item.Box == null)
+                    {
+                        @Html.Partial("_BoxPatrial", new Cloth { Id = item.Id})
+                    }
+                    else
+                    {*@
+                        @Html.Partial("_BoxPatrial", new Cloth { Id = item.Id, Box = item.Box })
+                    @*}*@
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Box)
-                </td>
-                <td>
-                    @Html.Partial("_ClothManagmentButtonsInClothForAgreementPartial", new Cloth { Id = item.Id})
+                    @Html.Partial("_ClothManagmentButtonsInClothForAgreementPartialCLOSED", item.Id )
                 </td>
             </tr>
             }

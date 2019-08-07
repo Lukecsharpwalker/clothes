@@ -1,14 +1,12 @@
-﻿@model  Cloth
+﻿@model  int
 
     <td style="width:150px;">
-        <div class="btn-group" role="group">
-            <a type="button" class="btn btn-danger" href="@Url.Action("DeleteCloth/"+Model.Id)">
+        <div class="btn-group" role="group">            
+            <a type="button" class="btn btn-danger" href="@Url.Action("DeleteCloth/"+Model)">
                 <i class="far fa-trash-alt"></i>
-            </a>          
-                <form asp-action="BoxCloth">
-                    <input asp-for="Box" />
-                    <input asp-for="Id" value="@Model.Id" style="display:none" />
-                    <input type="submit" value="Dodaj" class="btn btn-primary" />&nbsp;
-                </form>
+            </a>
+            <a type="button" class="btn btn-danger" href="@Url.Action("ReturnCloth/"+Model)">
+                <i class="fas fa-undo"></i>
+            </a>
         </div>
     </td>

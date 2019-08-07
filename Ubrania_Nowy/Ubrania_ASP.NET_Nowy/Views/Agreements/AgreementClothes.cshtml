@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Ubrania_ASP.NET_Nowy.Models.Cloth>
     @{
-    ViewData["Title"] = "AgreementClothes";
-    var ClothList = Model.FirstOrDefault();
-    var AID = ClothList.Agreement_Id;
+        ViewData["Title"] = "AgreementClothes";
+        var ClothList = Model.FirstOrDefault();
+        var AID = ClothList.Agreement_Id;
     }
     <br />
     <h2>Spis Ubrań Umowy: </h2>
@@ -78,7 +78,7 @@
                         @Html.DisplayFor(modelItem => item.Agreement.Id)
                     </td>
                     <td>
-                        @Html.Partial("_ClothManagmentButtonsInClothForAgreementPartial", new Cloth { Id = item.Id })
+                        @Html.Partial("_ClothManagmentButtonsInClothForAgreementPartial",  item.Id )
                     </td>
                 </tr>
                 }

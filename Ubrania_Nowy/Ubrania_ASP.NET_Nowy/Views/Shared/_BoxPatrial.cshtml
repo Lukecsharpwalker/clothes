@@ -1,0 +1,12 @@
+﻿@model Cloth
+    <form asp-action="BoxCloth">
+        <input asp-for="Box" value="@Model.Box" />
+        <div class="row">
+        <div>
+            <input asp-for="Id" value="@Model.Id" style="display:none" />
+        </div>
+        <div>
+        <input type="submit" value="Dodaj" class="btn btn-primary" style="display:none"/>&nbsp;
+        </div>
+        </div>
+    </form>
