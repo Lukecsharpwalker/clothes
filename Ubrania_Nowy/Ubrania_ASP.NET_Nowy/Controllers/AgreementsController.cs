@@ -291,9 +291,11 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             if (cloth.Count < 1)
             {
                 TempData["ErrorMessage"] = "This is the message";
+                
                 return RedirectToAction("Index");
-            }         
-            
+            }
+            ViewData["Type"] = new SelectList(_context.Types, "Id", "NameOf");
+            ViewData["Test"] = "tescik";
             return View(cloth);
         }
 

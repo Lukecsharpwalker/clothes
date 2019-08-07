@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "Create";
 }
+
+@ViewBag.index
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <br />
@@ -49,7 +51,7 @@
                     <label class="control-label">Typ</label>
                 </div>
                 <div class="col-4">
-                    <input asp-for="Type" class="form-control">
+                    <select asp-for="Type" class="form-control" ></select>
                 </div>
                 <span asp-validation-for="Type" class="text-danger"></span>
             </div>

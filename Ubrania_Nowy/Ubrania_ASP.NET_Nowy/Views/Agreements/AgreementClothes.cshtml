@@ -1,51 +1,53 @@
 ﻿@model IEnumerable<Ubrania_ASP.NET_Nowy.Models.Cloth>
-    @{
-        ViewData["Title"] = "AgreementClothes";
-        var ClothList = Model.FirstOrDefault();
-        var AID = ClothList.Agreement_Id;
-    }
-    <br />
-    <h2>Spis Ubrań Umowy: </h2>
+@{
+    ViewData["Title"] = "AgreementClothes";
+    var ClothList = Model.FirstOrDefault();
+    var AID = ClothList.Agreement_Id;
+    var index = ViewBag.test;
+}
+
+<br />
+<h2>Spis Ubrań Umowy: </h2>
 
 
 
-    <div class="form-border">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        Marka
-                    </th>
-                    <th>
-                        Rozmiar
-                    </th>
-                    <th>
-                        Kolor
-                    </th>
-                    <th>
-                        Typ
-                    </th>
-                    <th>
-                        Opis
-                    </th>
-                    <th>
-                        Cena
-                    </th>
-                    <th>
-                        Cena Rzeczywista
-                    </th>
-                    <th>
-                        Sprzedane?
-                    </th>
-                    <th>
-                        Umowa
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+<div class="form-border">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Marka
+                </th>
+                <th>
+                    Rozmiar
+                </th>
+                <th>
+                    Kolor
+                </th>
+                <th>
+                    Typ
+                </th>
+                <th>
+                    Opis
+                </th>
+                <th>
+                    Cena
+                </th>
+                <th>
+                    Cena Rzeczywista
+                </th>
+                <th>
+                    Sprzedane?
+                </th>
+                <th>
+                    Umowa
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Id)
@@ -78,24 +80,24 @@
                         @Html.DisplayFor(modelItem => item.Agreement.Id)
                     </td>
                     <td>
-                        @Html.Partial("_ClothManagmentButtonsInClothForAgreementPartial",  item.Id )
+                        @Html.Partial("_ClothManagmentButtonsInClothForAgreementPartial", item.Id)
                     </td>
                 </tr>
-                }
+            }
 
-            </tbody>
-        </table>
-        <hr />
-        <a asp-action="Index" class="btn btn-success">Powrót</a>
+        </tbody>
+    </table>
+    <hr />
+    <a asp-action="Index" class="btn btn-success">Powrót</a>
 
-    </div>
-    
-      @await Html.PartialAsync("_CreateClothPartial", new Cloth { Agreement_Id = AID })
-  
+</div>
+
+@await Html.PartialAsync("_CreateClothPartial", new Cloth() { Agreement_Id = AID }, new ViewDataDictionary(ViewData){{ "index", index }});
 
 
-    @*@await Html.PartialAsync("_CreateClothPartial", new Cloth())*@
-    @section Scripts {
+
+@*@await Html.PartialAsync("_CreateClothPartial", new Cloth())*@
+@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="~/js/typeahead.js"></script>
     <script>
@@ -156,4 +158,4 @@
         });
 
     </script>
-    }
+}
