@@ -3,7 +3,7 @@
     ViewData["Title"] = "AgreementClothes";
     var ClothList = Model.FirstOrDefault();
     var AID = ClothList.Agreement_Id;
-    var index = ViewBag.test;
+    var index = ViewBag.Type;
 }
 
 <br />
@@ -92,7 +92,7 @@
 
 </div>
 
-@await Html.PartialAsync("_CreateClothPartial", new Cloth() { Agreement_Id = AID }, new ViewDataDictionary(ViewData){{ "index", index }});
+@await Html.PartialAsync("_CreateClothPartial", new Cloth() { Agreement_Id = AID }, new ViewDataDictionary(ViewData){{ "index", index }})
 
 
 
