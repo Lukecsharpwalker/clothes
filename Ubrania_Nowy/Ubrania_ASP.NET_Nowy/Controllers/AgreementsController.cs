@@ -116,7 +116,12 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             if (ModelState.IsValid)
             {
                 agreement.Begin = DateTime.Now;
-                agreement.End = DateTime.Now.AddMonths(2);
+                agreement.End =  agreement.Begin.AddMonths(2);
+                while(agreement.End.DayOfWeek.ToString() != "Thursday")
+                {
+                    agreement.End = agreement.End.AddDays(1);
+                }              
+
                 _context.Add(agreement);
                 await _context.SaveChangesAsync();
 
