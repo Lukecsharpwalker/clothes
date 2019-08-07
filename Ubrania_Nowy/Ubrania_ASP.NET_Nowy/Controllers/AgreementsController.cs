@@ -406,6 +406,14 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             return RedirectToAction("AgreementClothes", new { id = cloth.Agreement_Id });
         }
 
+        public async Task<IActionResult> DeleteClothClosed(int id)
+        {
+            var cloth = await _context.Clothes.Include(a => a.Agreement).SingleOrDefaultAsync(m => m.Id == id);
+            _context.Clothes.Remove(cloth);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("AgreementClothesClosed", new { id = cloth.Agreement_Id });
+        }
+
         public IActionResult CreateClothPartial()
         {
 

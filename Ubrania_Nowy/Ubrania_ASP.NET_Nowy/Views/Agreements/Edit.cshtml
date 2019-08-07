@@ -72,16 +72,25 @@
                 <input asp-for="End" class="form-control" />
             </div>
             <span asp-validation-for="End" class="text-danger"></span>
+        </div>
 
+        <div class="form-group row">
+            <div class="col-2">
+                <label class="control-label">Aktywna?</label>
+            </div>
+            <div class="col-4">
+                <input asp-for="IsActive" class="form-control" />
+            </div>
+            <span asp-validation-for="IsActive" class="text-danger"></span>
         </div>
 
         <div class="form-group">
             <input type="submit" value="Zmień" class="btn btn-primary" />&nbsp;
-            <a asp-action="Index" class="btn btn-success">Wróć do listy</a>
+            <a asp-action="Index" class="btn btn-success">Wróć do listy Umów Otwartych</a>
+            <a asp-action="Closed_Agreements" class="btn btn-success">Wróć do listy Umów Zamkniętych</a>
         </div>
 
-
-    </div>
+        
 </form>
 
 @section Scripts {

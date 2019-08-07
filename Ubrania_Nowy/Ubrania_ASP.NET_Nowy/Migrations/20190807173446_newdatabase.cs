@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Ubrania_ASP.NET_Nowy.Migrations
 {
-    public partial class NamesofpropertyKeysWIthProperties : Migration
+    public partial class newdatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,7 +19,8 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
                     Tel = table.Column<double>(nullable: false),
                     Pesel = table.Column<double>(nullable: false),
                     Begin = table.Column<DateTime>(nullable: false),
-                    End = table.Column<DateTime>(nullable: false)
+                    End = table.Column<DateTime>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -239,10 +240,11 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
                     Type = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Price = table.Column<int>(nullable: false),
-                    Price_RL = table.Column<int>(nullable: false),
+                    Price_RL = table.Column<double>(nullable: false),
                     PriceCounter = table.Column<int>(nullable: false),
                     Agreement_Id = table.Column<int>(nullable: false),
                     Sold = table.Column<bool>(nullable: false),
+                    SoldDate = table.Column<DateTime>(nullable: false),
                     Box = table.Column<string>(nullable: true),
                     AnnualReportId = table.Column<int>(nullable: true),
                     DailyReportId = table.Column<int>(nullable: true),
@@ -355,6 +357,75 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
                         principalTable: "NamesOfProperties",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "NamesOfProperties",
+                column: "Id",
+                value: 1);
+
+            migrationBuilder.InsertData(
+                table: "Colors",
+                columns: new[] { "Id", "NameOf", "PropertyId" },
+                values: new object[,]
+                {
+                    { 11, "Czarny", 1 },
+                    { 10, "Fioletowy", 1 },
+                    { 8, "Zielony", 1 },
+                    { 7, "Szary", 1 },
+                    { 6, "Żółty", 1 },
+                    { 9, "Niebieski", 1 },
+                    { 4, "Pomarańczowy", 1 },
+                    { 3, "Czerwony", 1 },
+                    { 2, "Różowy", 1 },
+                    { 1, "Biały", 1 },
+                    { 5, "Brązowy", 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Marks",
+                columns: new[] { "Id", "NameOf", "PropertyId" },
+                values: new object[,]
+                {
+                    { 1, "Zara", 1 },
+                    { 2, "Hnm", 1 },
+                    { 3, "Mohito", 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Sizes",
+                columns: new[] { "Id", "NameOf", "PropertyId" },
+                values: new object[,]
+                {
+                    { 9, "37", 1 },
+                    { 13, "41", 1 },
+                    { 12, "40", 1 },
+                    { 11, "39", 1 },
+                    { 10, "38", 1 },
+                    { 8, "36", 1 },
+                    { 4, "m", 1 },
+                    { 6, "xl", 1 },
+                    { 5, "l", 1 },
+                    { 3, "s", 1 },
+                    { 2, "xs", 1 },
+                    { 1, "xxs", 1 },
+                    { 7, "xxl", 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Types",
+                columns: new[] { "Id", "NameOf", "PropertyId" },
+                values: new object[,]
+                {
+                    { 8, "Bluzka", 1 },
+                    { 1, "Biżuteria", 1 },
+                    { 2, "Dodatki", 1 },
+                    { 3, "Torebka", 1 },
+                    { 4, "Spodnie", 1 },
+                    { 5, "Sukienka", 1 },
+                    { 6, "Spódnica", 1 },
+                    { 7, "Kurtka", 1 },
+                    { 9, "Buty", 1 }
                 });
 
             migrationBuilder.CreateIndex(
