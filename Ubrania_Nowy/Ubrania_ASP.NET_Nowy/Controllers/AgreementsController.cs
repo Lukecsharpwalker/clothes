@@ -320,9 +320,11 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             return View(agreement);
         }
 
+
+       
         [Authorize(Roles = SD.AdminEndUser)]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateTicket(int? id, TicketViewModel ticketViewModel)
         {
             var clothes = await _context.Clothes.Where(c => c.Agreement_Id == id).ToListAsync();
