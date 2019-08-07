@@ -287,10 +287,16 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             {
                 return NotFound();
             }
-            var cloth = await _context.Clothes.Where(m => m.Agreement_Id == id).ToListAsync(); //i think can be changed at include
-            var agreement = await _context.Agreements.Where(a => a.Id == id).ToListAsync();
+            var cloth = await _context.Clothes.Where(m => m.Agreement_Id == id).Include(a=>a.Agreement).ToListAsync();
+            if (cloth.Count < 1)
+            {
+                TempData["ErrorMessage"] = "This is the message";
+                return RedirectToAction("Index");
+            }         
+            
             return View(cloth);
         }
+
         public async Task<IActionResult> AgreementClothesClosed(int? id)
         {
             if (id == null)
@@ -455,6 +461,8 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
           //  return RedirectToAction(nameof(Index));
 
         }
+
+       
 
         private bool AgreementExists(int id)
         {

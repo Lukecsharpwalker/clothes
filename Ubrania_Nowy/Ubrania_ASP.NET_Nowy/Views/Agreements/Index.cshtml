@@ -2,7 +2,10 @@
 
 @{
     ViewData["Title"] = "Index";
+    var errorMessage = TempData["ErrorMessage"];
 }
+
+
 
 <head>
     <meta charset="utf-8">
@@ -92,4 +95,9 @@
             });
         });
     });
+    @if (@errorMessage != null)
+    {
+        @: alert("Umowa nie posiada Ubrań");
+    }
+    
 </script>
