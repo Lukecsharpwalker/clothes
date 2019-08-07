@@ -34,7 +34,8 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             {
 
                 foreach (var cloth in clothViewModel.ClothList)
-                {                   
+                {        
+                     cloth.Price_RL = (cloth.Price *(1- (0.01 * clothViewModel.Discount)));
                         _context.Update(cloth);
                                         
                 }

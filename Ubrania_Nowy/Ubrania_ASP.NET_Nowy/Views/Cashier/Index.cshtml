@@ -71,7 +71,7 @@
                             <tr>
                                 <td colspan="2" class="table-secondary">Cena:</td>
                                 <td colspan="3" class="table-secondary">
-                                    <input asp-for="PriceCounter" value="@Model.PriceCounter" style="background-color:#f3f3f3;text-align:right" />
+                                    <input asp-for="PriceCounter" value="@Model.PriceCounter" id="pricecounter" style="background-color:#f3f3f3;text-align:right" />
                                 </td>
                             </tr>
                         </tbody>
@@ -80,14 +80,13 @@
                     <button onclick="closeBill()" class="btn btn-sm btn-dark"> Zamknij </button>
                     <input asp-for="Close" id="close" style="display:none" />
                     <button onclick="removeLastItemFromBill()" class="btn btn-sm btn-dark"> Cofnij </button>
-                    <input asp-for="Back" id="back" value="@Model.Close" style="display:none"/>
+                    <input asp-for="Back" id="back" value="@Model.Close" style="display:none" />
                 }
-
             </div>
-
         </div>
-
     </form>
+    <input asp-for="Discount" id="discount" />
+    <button onclick="Discount()" class="btn btn-sm btn-dark"> Dodaj Rabat</button>
 </body>
 <script>
     function closeBill() {
@@ -95,5 +94,10 @@
     }
     function removeLastItemFromBill() {
         document.getElementById("back").value = "true";
-    }
+        }
+    function Discount() {
+         var dsc = document.getElementById("discount").value;
+         document.getElementById("pricecounter").value = (@Model.PriceCounter *(1- (0.01 * dsc)));;
+         return false;
+        }
 </script>

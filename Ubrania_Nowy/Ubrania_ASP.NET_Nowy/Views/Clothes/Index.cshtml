@@ -18,7 +18,7 @@
 <br />
 
 <p>
-    @Html.PartialAsync("_CreateButtonPartial")
+    @Html.Partial("_CreateButtonPartial")
 </p>
 <input class="form-control" id="myInput" type="search" name="myInput" placeholder="Wyszukaj..." style="width:auto">
 <br>
@@ -106,7 +106,7 @@
                     </td>
                     <td>
 
-                        @Html.PartialAsync("_ClothAddButtonsPartial", item.Id)
+                        @Html.Partial("_ClothAddButtonsPartial", item.Id)
                     </td>
                 </tr>
             }
