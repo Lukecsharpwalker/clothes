@@ -125,7 +125,6 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
                 _context.Add(agreement);
                 await _context.SaveChangesAsync();
 
-
                 var user = new ApplicationUser
                 {
                     UserName = agreement.Id.ToString(),

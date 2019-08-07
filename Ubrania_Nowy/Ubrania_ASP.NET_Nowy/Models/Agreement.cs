@@ -19,6 +19,7 @@ namespace Ubrania_ASP.NET_Nowy.Models
         public DateTime Begin { get; set; }
         [DataType(DataType.Date)]
         public DateTime End { get; set; }
+        public bool IsActive { get; set; }
         public IList<Cloth> Clothes { get; set; }
     }
 }
