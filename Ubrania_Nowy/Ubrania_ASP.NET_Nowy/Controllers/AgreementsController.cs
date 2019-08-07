@@ -253,6 +253,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         [Authorize(Roles = SD.AdminEndUser)]
         public IActionResult Create_Cloth()
         {
+            ViewData["Type"] = new SelectList(_context.Types, "Id", "NameOf");
             return View();
         }
         [Authorize(Roles = SD.AdminEndUser)]
