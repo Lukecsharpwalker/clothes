@@ -75,7 +75,7 @@
                         @Html.DisplayFor(modelItem => item.Agreement.Id)
                     </td>
                     <td>
-                        @Html.Partial("_ClothManagmentButtonsInClothForAgreementPartial", item.Id)
+                        @Html.PartialAsync("_ClothManagmentButtonsInClothForAgreementPartial", item.Id)
                     </td>
                 </tr>
             }

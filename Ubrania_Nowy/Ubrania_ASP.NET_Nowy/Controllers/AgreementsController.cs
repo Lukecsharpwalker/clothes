@@ -115,6 +115,8 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             //ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+                agreement.Begin = DateTime.Now;
+                agreement.End = DateTime.Now.AddMonths(2);
                 _context.Add(agreement);
                 await _context.SaveChangesAsync();
 

@@ -6,7 +6,7 @@
 <h2>Spis Ubrań Umowy: </h2>
 
 <p>
-    @Html.Partial("_CreateButtonPartial_2")
+    @Html.PartialAsync("_CreateButtonPartial_2")
         </p>
     <div class="form-border">
         <table class="table">
@@ -77,7 +77,7 @@
                             @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
-                            @Html.Partial("_ClothAddButtonsPartial", item.Id)
+                            @Html.PartialAsync("_ClothAddButtonsPartial", item.Id)
                         </td>
                     </tr>
                 }
