@@ -85,8 +85,11 @@
             </div>
         </div>
     </form>
-    <input asp-for="Discount" id="discount" />
-    <button onclick="Discount()" class="btn btn-sm btn-dark"> Dodaj Rabat</button>
+    <div style="padding-left:34%;padding-top: 1%;">
+        <input  id="discount" />
+        <button onclick="Discount()" class="btn btn-sm btn-dark"> Dodaj Rabat</button>
+    </div>
+   
 </body>
 <script>
     function closeBill() {
@@ -96,8 +99,9 @@
         document.getElementById("back").value = "true";
         }
     function Discount() {
-         var dsc = document.getElementById("discount").value;
-         document.getElementById("pricecounter").value = (@Model.PriceCounter *(1- (0.01 * dsc)));;
+        var dsc = document.getElementById("discount").value;
+        var newPC = Math.round((@Model.PriceCounter * (1 - (0.01 * dsc))) * 100) / 100;
+         document.getElementById("pricecounter").value = newPC;
          return false;
         }
 </script>

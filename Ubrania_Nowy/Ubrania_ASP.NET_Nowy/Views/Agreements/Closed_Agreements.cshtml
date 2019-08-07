@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Ubrania_ASP.NET_Nowy.Models.Agreement>
+
+@{
+    ViewData["Title"] = "Closed_Agreements";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+</head>
+
+
+<br />
+<h2>Lista Umów Zamkniętych</h2>
+<br />
+
+<input class="form-control" id="myInput" type="search" name="myInput" placeholder="Wyszukaj..." style="width:auto">
+<br>
+<div class="form-border">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Numer Umowy
+                </th>
+                <th>
+                    Imię
+                </th>
+                <th>
+                    Nazwisko
+                </th>
+                <th>
+                    Nr. Tel
+                </th>
+                <th>
+                    Pesel
+                </th>
+                <th>
+                    Data Rozpoczęcia
+                </th>
+                <th>
+                    Data Końca
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pesel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Begin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.End)
+                    </td>
+                    <td>
+                        @Html.Partial("_TableButtonPartial2", item.Id)
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

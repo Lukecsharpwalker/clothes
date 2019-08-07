@@ -51,7 +51,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         [Authorize(Roles = SD.AdminEndUser)]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Agreements.ToListAsync());
+            return View(await _context.Agreements.Where(a => a.IsActive == true).ToListAsync());
         }
 
         // GET: Agreements/Details/5
@@ -116,8 +116,8 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             if (ModelState.IsValid)
             {
                 agreement.Begin = DateTime.Now;
-                agreement.End =  agreement.Begin.AddMonths(2);
-                while(agreement.End.DayOfWeek.ToString() != "Thursday")
+                agreement.End = agreement.Begin.AddMonths(2);
+                while (agreement.End.DayOfWeek.ToString() != "Thursday")
                 {
                     agreement.End = agreement.End.AddDays(1);
                 }
@@ -291,6 +291,16 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             var agreement = await _context.Agreements.Where(a => a.Id == id).ToListAsync();
             return View(cloth);
         }
+        public async Task<IActionResult> AgreementClothesClosed(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var cloth = await _context.Clothes.Where(m => m.Agreement_Id == id).ToListAsync(); //i think can be changed at include
+            var agreement = await _context.Agreements.Where(a => a.Id == id).ToListAsync();
+            return View(cloth);
+        }
 
         public async Task<IActionResult> PrintPDF(int? id)
         {
@@ -348,7 +358,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
 
 
 
-        public async Task<IActionResult> AgreementClothesCustomer(int productPage=1)
+        public async Task<IActionResult> AgreementClothesCustomer(int productPage = 1)
         {
             var id = HttpContext.User.Identity.Name;
 
@@ -359,8 +369,8 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
 
             AgreementClothesCustomerViewModel ACCVW = new AgreementClothesCustomerViewModel()
             {
-               ClothList = new List<Cloth>()
-        };
+                ClothList = new List<Cloth>()
+            };
             //  var cloth = await _context.Clothes.Where(m => m.Agreement_Id.ToString() == id).ToListAsync();
             ACCVW.ClothList = await _context.Clothes.Where(m => m.Agreement_Id.ToString() == id).ToListAsync();
             var count = ACCVW.ClothList.Count;
@@ -419,7 +429,12 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
                 return RedirectToAction("AgreementClothes/" + cloth.Agreement_Id);
             }
             ViewData["Agreement_Id"] = new SelectList(_context.Agreements, "Id", "Name", cloth.Agreement_Id);
-           return RedirectToAction("AgreementClothes",cloth.Agreement_Id);
+            return RedirectToAction("AgreementClothes", cloth.Agreement_Id);
+        }
+
+        public async Task<IActionResult> Closed_Agreements()
+        {
+            return View(await _context.Agreements.Where(a => a.IsActive == false).ToListAsync());
         }
 
 

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Ubrania_ASP.NET_Nowy.Models.Cloth>
+@{
+    ViewData["Title"] = "AgreementClothesClosed";
+}
+<br />
+<h2>Spis Ubrań Umowy: </h2>
+
+<div class="form-border">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Marka
+                </th>
+                <th>
+                    Rozmiar
+                </th>
+                <th>
+                    Kolor
+                </th>
+                <th>
+                    Typ
+                </th>
+                <th>
+                    Opis
+                </th>
+                <th>
+                    Cena
+                </th>
+                <th>
+                    Cena Rzeczywista
+                </th>
+                <th>
+                    Sprzedane?
+                </th>
+                <th>
+                    Umowa
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mark)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Size)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Colour)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price_RL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sold)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Agreement.Id)
+                    </td>
+                    <td>
+                        @Html.Partial("_ClothManagmentButtonsInClothForAgreementPartial", item.Id)
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <hr />
+    <a asp-action="Index" class="btn btn-success">Powrót</a>
+
+</div>
