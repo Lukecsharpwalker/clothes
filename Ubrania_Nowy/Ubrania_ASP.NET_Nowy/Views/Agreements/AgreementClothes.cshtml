@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<Ubrania_ASP.NET_Nowy.Models.Cloth>
 @{
     ViewData["Title"] = "AgreementClothes";
+    var ClothList = Model.FirstOrDefault();
+    var AID = ClothList.Agreement_Id;
 }
 <br />
 <h2>Spis Ubrań Umowy: </h2>
@@ -85,7 +87,7 @@
         
     </div>
    
-        @await Html.PartialAsync("_CreateClothPartial", new Cloth())
+        @await Html.PartialAsync("_CreateClothPartial", new Cloth { Agreement_Id=AID })
     
 
 @*@await Html.PartialAsync("_CreateClothPartial", new Cloth())*@
