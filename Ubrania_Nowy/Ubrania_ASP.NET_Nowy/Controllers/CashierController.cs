@@ -58,6 +58,13 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
 
 
             var SingleCloth = await _context.Clothes.Where(c => c.Id == clothViewModel.Id).SingleOrDefaultAsync();
+
+            if(SingleCloth != null && SingleCloth.Sold == true)
+            {
+                TempData["ErrorMessage"] = "This is the message";
+                return View("Index", clothViewModel);
+            }
+
             if (SingleCloth != null && !(clothViewModel.ClothList.Exists(x => x.Id == SingleCloth.Id)))
             {
                 clothViewModel.PriceCounter = SingleCloth.Price + clothViewModel.PriceCounter;

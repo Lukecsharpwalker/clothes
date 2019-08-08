@@ -1,4 +1,9 @@
 ﻿@model Ubrania_ASP.NET_Nowy.ViewModels.ClothViewModel
+
+@{
+    var errorMessage = TempData["ErrorMessage"];
+}
+
 <h2>Kasjer</h2>
 <body>
     <form asp-action="TakePrice">
@@ -86,14 +91,14 @@
         </div>
     </form>
     <div style="padding-left:34%;padding-top: 1%;">
-        
+
         <button onclick="Discount()" class="btn btn-sm btn-dark"> Dodaj Rabat</button>
     </div>
 
 </body>
 
 
-@if (Model !=null)
+@if (Model != null)
 {
     <script type="text/javascript">
 
@@ -109,6 +114,14 @@
         var dsc = document.getElementById("discount").value;
         var newPC = Math.round((@Model.PriceCounter * (1 - (0.01 * dsc))) * 100) / 100;
         document.getElementById("pricecounter").value = newPC;
-            }    
+            }
+
+     @if (@errorMessage != null)
+    {
+        @: alert("Ubranie Już sprzedane");
+    }
+
     </script>
+
+   
 }
