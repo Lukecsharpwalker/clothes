@@ -30,6 +30,7 @@ namespace Ubrania_ASP.NET_Nowy.Data
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Type> Types { get; set; }
         public DbSet<NamesList> NamesLists { get; set; }
+        public DbSet<LastnamesList> LastnamesLists { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
