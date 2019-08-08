@@ -37,9 +37,8 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" asp-controller="Agreements" asp-action="Index">Lista Umów</a>
                             <a class="dropdown-item" asp-controller="Clothes" asp-action="Index">Lista Ubrań</a>
-                            <a class="dropdown-item" href="#">Raporty</a>
                             <a class="dropdown-item" asp-controller="NamesOfProperties" asp-action="Index">Uzupełnanie Właściwości</a>
-                            <a class="dropdown-item" asp-controller="Agreements" asp-action="Closed_Agreements">Lista Umów Zamkniętych</a
+                            <a class="dropdown-item" asp-controller="Agreements" asp-action="Closed_Agreements">Lista Umów Zamkniętych</a>
                         </div>
                     </li>
                 }
@@ -60,7 +59,22 @@
                 {
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Cashier" asp-action="Index">Kasejer</a>
-                        
+
+                    </li>
+                }
+                @if (User.IsInRole(SD.AdminEndUser))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Raporty
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item">Raport Dobowy</a>
+                            <a class="dropdown-item">Raport Miesięczny</a>
+                            <a class="dropdown-item">Rapoty Roczny</a>
+
+                        </div>
+
                     </li>
                 }
             </ul>
