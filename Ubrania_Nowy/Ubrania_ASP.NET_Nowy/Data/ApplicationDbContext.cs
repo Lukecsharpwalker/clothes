@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Ubrania_ASP.NET_Nowy.Models;
 using Type = Ubrania_ASP.NET_Nowy.Models.Type;
 
@@ -27,6 +29,7 @@ namespace Ubrania_ASP.NET_Nowy.Data
         public DbSet<Mark> Marks { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Type> Types { get; set; }
+        public DbSet<NamesList> NamesLists { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -72,6 +75,15 @@ namespace Ubrania_ASP.NET_Nowy.Data
                 new Type { PropertyId = 1, Id = 7, NameOf = "Kurtka" },
                 new Type { PropertyId = 1, Id = 8, NameOf = "Bluzka" },
                 new Type { PropertyId = 1, Id = 9, NameOf = "Buty" });
+
+            using (StreamReader r = new StreamReader(@"C:\Temp\NamesList.json"))
+            {
+                string json = r.ReadToEnd();
+                var items = JsonConvert.DeserializeObject<List<NamesList>>(json);
+                items.RemoveAt(0);
+                builder.Entity<NamesList>().HasData(items.ToArray());
+            }
+
 
 
 

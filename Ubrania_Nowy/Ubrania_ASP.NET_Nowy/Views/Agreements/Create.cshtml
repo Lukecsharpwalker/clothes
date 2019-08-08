@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
+    var names = ViewBag.jsonObject;
 }
 <br />
 <h2>Stwórz Umowę</h2>
@@ -18,7 +19,11 @@
                 <label class="control-label">Imię</label>
             </div>
             <div class="col-4">
-                <input asp-for="Name" class="form-control" />
+
+                                    @*<input class="typeahead" type="text" placeholder="States of USA">*@
+                    <input asp-for="Name" class="form-control" id="name" type="text" />
+                
+                
             </div>
             <span asp-validation-for="Name" class="text-danger"></span>
 
@@ -49,31 +54,31 @@
             </div>
             <div class="col-4">
                 <input asp-for="Pesel" class="form-control" />
-                
+
             </div>
             <span asp-validation-for="Pesel" class="text-danger"></span>
 
         </div>
         @*<div class="form-group row">
-            <div class="col-2">
-                <label class="control-label">Początek</label>
-            </div>
-            <div class="col-4">
-                <input asp-for="Begin" class="form-control" />
-            </div>
-            <span asp-validation-for="Begin" class="text-danger"></span>
+                <div class="col-2">
+                    <label class="control-label">Początek</label>
+                </div>
+                <div class="col-4">
+                    <input asp-for="Begin" class="form-control" />
+                </div>
+                <span asp-validation-for="Begin" class="text-danger"></span>
 
-        </div*>
-        <div class="form-group row">
-            <div class="col-2">
-                <label class="control-label">Koniec</label>
-            </div>
-            <div class="col-4">
-                <input asp-for="End" class="form-control" />
-            </div>
-            <span asp-validation-for="End" class="text-danger"></span>
+            </div*>
+            <div class="form-group row">
+                <div class="col-2">
+                    <label class="control-label">Koniec</label>
+                </div>
+                <div class="col-4">
+                    <input asp-for="End" class="form-control" />
+                </div>
+                <span asp-validation-for="End" class="text-danger"></span>
 
-        </div>*@
+            </div>*@
 
         <div class="form-group">
             <input type="submit" value="Dodaj" class="btn btn-primary" />&nbsp;
@@ -87,4 +92,52 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script src="~/js/typeahead.js"></script>
+<script>
+    var substringMatcher = function (strs) {
+        return function findMatches(q, cb) {
+            var matches, substringRegex;
+
+            // an array that will be populated with substring matches
+            matches = [];
+
+            // regex used to determine if a string contains the substring `q`
+            substrRegex = new RegExp(q, 'i');
+
+            // iterate through the pool of strings and for any string that
+            // contains the substring `q`, add it to the `matches` array
+            $.each(strs, function (i, str) {
+                if (substrRegex.test(str)) {
+                    matches.push(str);
+                }
+            });
+
+            cb(matches);
+        };
+    };
+
+
+
+    var names = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+        'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+        'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+        'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+        'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+        'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+        'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+        'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+        'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+    ];
+
+    $('#name').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+    },
+        {
+            name: 'states',
+            source: substringMatcher(names)
+        });
+</script>
 }

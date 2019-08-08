@@ -19,6 +19,7 @@ using NetBarcode;
 using System.Drawing.Drawing2D;
 using Ubrania_ASP.NET_Nowy.Models.AgreementClothesCustomerViewModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace Ubrania_ASP.NET_Nowy.Controllers
 {
@@ -50,7 +51,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         // GET: Agreements
         [Authorize(Roles = SD.AdminEndUser)]
         public async Task<IActionResult> Index()
-        {
+        {            
             return View(await _context.Agreements.Where(a => a.IsActive == true).ToListAsync());
         }
 
@@ -101,6 +102,12 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         [Authorize(Roles = SD.AdminEndUser)]
         public IActionResult Create()
         {
+            using (StreamReader r = new StreamReader(@"C:\Temp\NamesList.json"))
+            {
+                string json = r.ReadToEnd();
+                var items = JsonConvert.DeserializeObject<List<NamesList>>(json);
+                var x = items.ToArray();
+            }
             return View();
         }
 
