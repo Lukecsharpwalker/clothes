@@ -80,12 +80,13 @@
                     <input asp-for="Close" id="close" style="display:none" />
                     <button onclick="removeLastItemFromBill()" class="btn btn-sm btn-dark"> Cofnij </button>
                     <input asp-for="Back" id="back" value="@Model.Close" style="display:none" />
+                    <input asp-for="Discount" id="discount" />
                 }
             </div>
         </div>
     </form>
     <div style="padding-left:34%;padding-top: 1%;">
-        <input id="discount" />
+        
         <button onclick="Discount()" class="btn btn-sm btn-dark"> Dodaj Rabat</button>
     </div>
 
