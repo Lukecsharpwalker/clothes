@@ -159,6 +159,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         {
             var cloth = await _context.Clothes.SingleOrDefaultAsync(m => m.Id == id);
             cloth.Sold = false;
+            cloth.Price_RL = 0;
             _context.Update(cloth);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
