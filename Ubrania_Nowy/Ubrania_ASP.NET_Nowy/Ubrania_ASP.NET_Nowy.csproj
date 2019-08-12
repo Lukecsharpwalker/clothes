@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-Ubrania_ASP.NET_Nowy-FECAFA72-BF1E-4E88-AE7F-23D0A2B2D267</UserSecretsId>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
 

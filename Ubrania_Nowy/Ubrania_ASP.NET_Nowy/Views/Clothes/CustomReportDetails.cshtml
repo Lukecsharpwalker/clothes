@@ -1,5 +1,6 @@
-﻿@model IEnumerable<Ubrania_ASP.NET_Nowy.Models.Cloth>
+﻿@model Ubrania_ASP.NET_Nowy.ViewModels.CustomReportViewModel
 
+<BR>
 
 <div class="form-border" style="width: fit-content">
     <table class="table">
@@ -7,15 +8,6 @@
             <tr>
                 <th style="border-bottom:0px">
                     Nr Ubrania
-                </th>
-                <th style="border-bottom:0px">
-                    Nr Umowy
-                </th>
-                <th style="border-bottom:0px">
-                    Imię Właściciela
-                </th>
-                <th style="border-bottom:0px">
-                    Nazwisko Własciciela
                 </th>
                 <th style="border-bottom:0px">
                     Marka
@@ -44,21 +36,12 @@
             </tr>
         </thead>
         <tbody id="myTable">
-            @foreach (var item in Model)
+            @foreach (var item in Model.Clothes)
             {
                 <tr>
                     <td>
                         @item.Id
-                    </td>
-                    <td>
-                        @item.Agreement.Id
-                    </td>
-                    <td>
-                        @item.Agreement.Name
-                    </td>
-                    <td>
-                        @item.Agreement.Surname
-                    </td>
+                    </td>                   
                     <td>
                         @item.Mark
                     </td>
@@ -83,7 +66,6 @@
                     <td>
                         @item.Sold
                     </td>
-                    
                 </tr>
             }
         </tbody>

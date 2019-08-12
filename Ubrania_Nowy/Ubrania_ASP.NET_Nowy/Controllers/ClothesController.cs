@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Ubrania_ASP.NET_Nowy.Data;
 using Ubrania_ASP.NET_Nowy.Models;
 using Ubrania_ASP.NET_Nowy.Utility;
+using Ubrania_ASP.NET_Nowy.ViewModels;
 
 namespace Ubrania_ASP.NET_Nowy.Controllers
 {
@@ -165,7 +166,27 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
             return RedirectToAction(nameof(Index));
 
         }
-       
+
+        public async Task<IActionResult> TodayReport()
+        {            
+            return View(await _context.Clothes.Where(c=>c.SoldDate.Day == DateTime.Now.Day).ToListAsync());
+        }
+
+        public IActionResult CustomReport()
+        {
+            return View();
+        }
+
+        // POST: Clothes/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CustomReportDetails(CustomReportViewModel customReportViewModel)
+        {
+            customReportViewModel.Clothes = await _context.Clothes.Where(c => c.SoldDate >= customReportViewModel.StartDate && c.SoldDate <= customReportViewModel.EndDate).ToListAsync();
+
+            return View(customReportViewModel);
+        }
+
 
 
         private bool ClothExists(int id)
