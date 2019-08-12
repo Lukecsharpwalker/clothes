@@ -25,7 +25,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers.API
         public IActionResult Get(string type, string query = null)
         {
             var namesListQuery = _context.Colors.Where(c => c.NameOf.ToLower().Contains(query.ToLower()));
-            return Ok(colourQuery.ToList());
+            return Ok(namesListQuery.ToList());
         }
         
     }
