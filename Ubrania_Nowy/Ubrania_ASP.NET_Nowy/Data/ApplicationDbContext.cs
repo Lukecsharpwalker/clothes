@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Ubrania_ASP.NET_Nowy.Models;
+using Ubrania_ASP.NET_Nowy.Utility;
 using Type = Ubrania_ASP.NET_Nowy.Models.Type;
 
 namespace Ubrania_ASP.NET_Nowy.Data
@@ -34,6 +36,7 @@ namespace Ubrania_ASP.NET_Nowy.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = SD.AdminEndUser, NormalizedName = SD.AdminEndUser.ToUpper() });
             builder.Entity<NamesOfProperty>().HasData(
                 new NamesOfProperty { Id = 1 });
             builder.Entity<Colour>().HasData(
@@ -84,9 +87,7 @@ namespace Ubrania_ASP.NET_Nowy.Data
                 items.RemoveAt(0);
                 builder.Entity<NamesList>().HasData(items.ToArray());
             }
-
-
-
+                    
 
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.

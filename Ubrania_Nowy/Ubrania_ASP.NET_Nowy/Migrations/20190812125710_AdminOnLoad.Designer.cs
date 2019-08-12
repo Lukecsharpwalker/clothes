@@ -10,8 +10,8 @@ using Ubrania_ASP.NET_Nowy.Data;
 namespace Ubrania_ASP.NET_Nowy.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190808150020_NameList5")]
-    partial class NameList5
+    [Migration("20190812125710_AdminOnLoad")]
+    partial class AdminOnLoad
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,6 +43,10 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new { Id = "36b3e3ba-8df2-4775-9a38-38829186ed71", ConcurrencyStamp = "c6465614-dfe4-4a7c-9ec6-2c3b294149bd", Name = "Admin", NormalizedName = "ADMIN" }
+                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -319,6 +323,19 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DailyReports");
+                });
+
+            modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.LastnamesList", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Lastname");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("LastnamesLists");
                 });
 
             modelBuilder.Entity("Ubrania_ASP.NET_Nowy.Models.Mark", b =>
