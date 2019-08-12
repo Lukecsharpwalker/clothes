@@ -4,9 +4,7 @@
     ViewData["Title"] = "Create_Cloth";
 }
 <br />
-
 <h2>Tworzenie nowego Ubrania</h2>
-
 <hr />
 <form asp-action="Create_Cloth">
     <div class="form-border">
@@ -18,7 +16,7 @@
                 <label class="control-label">Marka</label>
             </div>
             <div class="col-4">
-                <input asp-for="Mark" id="mark" class="form-control" />
+                <input asp-for="Mark" id="mark" class="form-control" autofocus />
             </div>
             <span asp-validation-for="Mark" class="text-danger"></span>
         </div>
@@ -50,7 +48,7 @@
                 <label class="control-label">Type</label>
             </div>
             <div class="col-4">
-                <select asp-for="Type" class="form-control" asp-items="ViewBag.Type"></select>
+                <input asp-for="Type" class="form-control" id="type">
             </div>
             <span asp-validation-for="Type" class="text-danger"></span>
         </div>
@@ -132,6 +130,11 @@
             });
 
             $('#size').typeahead(null, {
+                display: 'nameOf',
+                source: colourSrc
+            });
+
+            $('#type').typeahead(null, {
                 display: 'nameOf',
                 source: colourSrc
             });
