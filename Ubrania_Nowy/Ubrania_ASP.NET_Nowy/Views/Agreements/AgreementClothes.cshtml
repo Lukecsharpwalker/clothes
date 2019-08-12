@@ -151,6 +151,24 @@
                 source: colourSrc
             });
         })
+
+         $(document).ready(function () {
+
+            var colourSrc = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/API/Properties?type=type&query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#type').typeahead(null, {
+                display: 'nameOf',
+                source: colourSrc
+            });
+        })
+
         $(document).ready(function () {
             $("button").click(function () {
                 $("p").toggle();
