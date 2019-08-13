@@ -20,12 +20,13 @@ namespace Ubrania_ASP.NET_Nowy.Jobs
 
         public async Task RunAllClothesForAgreemnetSoldJob()
         {
-            var agreements =await _context.Agreements.Where(a=>a.IsActive == true).Include(c=>c.Clothes).ToListAsync();
-            var xx = 10;
+            var clothes = _context.Clothes.ToList();
+            var agreements =  _context.Agreements.Where(a=>a.IsActive == true).Include(c=>c.Clothes).ToList();
+            
 
             foreach(var agreement in agreements)
             {
-               if(!(agreement.Clothes.Select(x => x.Sold).Contains(false)))
+               if(agreement.Clothes != null && !(agreement.Clothes.Select(x => x.Sold).Contains(false)))
                 {
                     agreement.IsActive = false;
                     _context.Update(agreement);

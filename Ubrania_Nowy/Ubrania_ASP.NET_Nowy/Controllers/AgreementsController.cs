@@ -51,18 +51,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         // GET: Agreements
         [Authorize(Roles = SD.AdminEndUser)]
         public async Task<IActionResult> Index()
-        {
-            //var agreements = await _context.Agreements.Where(a => a.IsActive == true).Include(c => c.Clothes).ToListAsync();
-
-            //foreach (var agreement in agreements)
-            //{
-            //    if (!(agreement.Clothes.Select(x => x.Sold).Contains(false)) && agreement.Clothes.Count >= 1)
-            //    {
-            //        agreement.IsActive = false;
-            //        _context.Update(agreement);
-            //    }
-            //}
-            //await _context.SaveChangesAsync();
+        {           
 
             return View(await _context.Agreements.Where(a => a.IsActive == true).ToListAsync());
         }
