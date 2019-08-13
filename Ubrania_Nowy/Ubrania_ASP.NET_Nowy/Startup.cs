@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Ubrania_ASP.NET_Nowy.Data;
 using Ubrania_ASP.NET_Nowy.Models;
 using Ubrania_ASP.NET_Nowy.Services;
+using Hangfire;
+using Ubrania_ASP.NET_Nowy.Jobs;
 
 namespace Ubrania_ASP.NET_Nowy
 {
@@ -26,6 +28,10 @@ namespace Ubrania_ASP.NET_Nowy
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHangfire(x => x.UseSqlServerStorage("Server=(localdb)\\mssqllocaldb;Database=HangFire;Trusted_Connection=True;MultipleActiveResultSets=true"));
+            services.AddHangfireServer();
+            services.AddScoped<IIsActiveScanJob, IsActiveScanJob>();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -59,6 +65,8 @@ namespace Ubrania_ASP.NET_Nowy
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseHangfireDashboard();
 
             app.UseStaticFiles();
 
