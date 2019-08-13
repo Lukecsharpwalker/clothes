@@ -31,6 +31,7 @@ namespace Ubrania_ASP.NET_Nowy
             services.AddHangfire(x => x.UseSqlServerStorage("Server=(localdb)\\mssqllocaldb;Database=HangFire;Trusted_Connection=True;MultipleActiveResultSets=true"));
             services.AddHangfireServer();
             services.AddScoped<IIsActiveScanJob, IsActiveScanJob>();
+            services.AddScoped<IAllClothesForAgreementSoldJob, AllClothesForAgreementSoldJob>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
