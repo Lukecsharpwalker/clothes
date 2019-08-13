@@ -80,14 +80,14 @@ namespace Ubrania_ASP.NET_Nowy.Data
                 new Type { PropertyId = 1, Id = 8, NameOf = "Bluzka" },
                 new Type { PropertyId = 1, Id = 9, NameOf = "Buty" });
 
-            //using (StreamReader r = new StreamReader(@"C:\Temp\NamesList.json"))
-            //{
-            //    string json = r.ReadToEnd();
-            //    var items = JsonConvert.DeserializeObject<List<NamesList>>(json);
-            //    items.RemoveAt(0);
-            //    builder.Entity<NamesList>().HasData(items.ToArray());
-            //}
-                    
+            using (StreamReader r = new StreamReader(@"C:\Temp\NamesList.json"))
+            {
+                string json = r.ReadToEnd();
+                var items = JsonConvert.DeserializeObject<List<NamesList>>(json);
+                items.RemoveAt(0);
+                builder.Entity<NamesList>().HasData(items.ToArray());
+            }
+
 
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.

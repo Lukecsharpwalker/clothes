@@ -101,13 +101,7 @@ namespace Ubrania_ASP.NET_Nowy.Controllers
         // GET: Agreements/Create
         [Authorize(Roles = SD.AdminEndUser)]
         public IActionResult Create()
-        {
-            //using (StreamReader r = new StreamReader(@"C:\Temp\NamesList.json"))
-            //{
-            //    string json = r.ReadToEnd();
-            //    var items = JsonConvert.DeserializeObject<List<NamesList>>(json);
-            //    var x = items.ToArray();
-            //}
+        {            
             return View();
         }
 
