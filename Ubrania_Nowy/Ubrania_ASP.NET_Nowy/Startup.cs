@@ -67,13 +67,18 @@ namespace Ubrania_ASP.NET_Nowy
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseHangfireDashboard();
 
             app.UseStaticFiles();
 
             app.UseAuthentication();
 
             ApplicationDbInitializer.SeedUsers(userManager);
+
+
+            app.UseHangfireDashboard("/hangfire", new DashboardOptions
+            {
+                Authorization = new[] { new MyAuthorizationFilter() }
+            });
 
             app.UseMvc(routes =>
             {
