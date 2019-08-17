@@ -1,6 +1,6 @@
 FROM microsoft/dotnet:latest
 COPY . /app
-WORKDIR /app
+WORKDIR /app/Ubrania_Nowy/Ubrania_ASP.NET_Nowy
 
 RUN dotnet restore
 RUN dotnet build
