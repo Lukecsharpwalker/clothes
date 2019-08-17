@@ -15,7 +15,7 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -43,7 +43,7 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "88267736-6b04-4a3e-b371-22c91ea78a48", ConcurrencyStamp = "f0f8ab09-b756-432f-b3ac-129b69e4f5d4", Name = "Admin", NormalizedName = "ADMIN" }
+                        new { Id = "7930229a-e0f4-4b9f-9784-2b5ee826060d", ConcurrencyStamp = "e7a7f716-7d5f-41a3-9163-f1465d719c34", Name = "Admin", NormalizedName = "ADMIN" }
                     );
                 });
 

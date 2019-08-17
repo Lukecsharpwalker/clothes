@@ -80,7 +80,7 @@ namespace Ubrania_ASP.NET_Nowy.Data
                 new Type { PropertyId = 1, Id = 8, NameOf = "Bluzka" },
                 new Type { PropertyId = 1, Id = 9, NameOf = "Buty" });
 
-            using (StreamReader r = new StreamReader(@"C:\Temp\NamesList.json"))
+            using (StreamReader r = new StreamReader(@"NamesList.json"))
             {
                 string json = r.ReadToEnd();
                 var items = JsonConvert.DeserializeObject<List<NamesList>>(json);

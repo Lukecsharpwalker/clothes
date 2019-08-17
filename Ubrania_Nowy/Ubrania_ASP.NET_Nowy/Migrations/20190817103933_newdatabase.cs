@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Ubrania_ASP.NET_Nowy.Migrations
 {
-    public partial class newdb : Migration
+    public partial class newdatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -387,7 +387,7 @@ namespace Ubrania_ASP.NET_Nowy.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "88267736-6b04-4a3e-b371-22c91ea78a48", "f0f8ab09-b756-432f-b3ac-129b69e4f5d4", "Admin", "ADMIN" });
+                values: new object[] { "7930229a-e0f4-4b9f-9784-2b5ee826060d", "e7a7f716-7d5f-41a3-9163-f1465d719c34", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "NamesLists",
